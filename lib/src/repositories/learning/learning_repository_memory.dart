@@ -22,6 +22,11 @@ class LearningRepositoryMemory implements LearningRepository {
   }
 
   @override
+  Future<List<LearningModel>> findAll() async {
+    return data;
+  }
+
+  @override
   Future<LearningModel> update(LearningModel learningModel) async {
     data.removeWhere((element) => element.uid == learningModel.uid);
 

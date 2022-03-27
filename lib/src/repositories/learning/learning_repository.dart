@@ -8,4 +8,6 @@ abstract class LearningRepository {
   Future<LearningModel> update(LearningModel learningModel);
 
   Future<bool> delete(LearningModel learningModel);
+
+  Future<List<LearningModel>> findAll();
 }
