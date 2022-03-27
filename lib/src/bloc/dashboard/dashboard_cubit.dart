@@ -7,6 +7,8 @@ part 'dashboard_state.dart';
 part 'dashboard_cubit.freezed.dart';
 
 class DashboardCubit extends Cubit<DashboardState> {
+  static const int _mostRecentLearningsCount = 3;
+
   final LearningRepository learningRepository;
 
   DashboardCubit({
@@ -24,15 +26,26 @@ class DashboardCubit extends Cubit<DashboardState> {
 
     var learnings = await learningRepository.findAll();
 
+    learnings.sort((a, b) => b.created.compareTo(a.created));
+
+    var mostRecentLearningsCount =
+        learnings.length > _mostRecentLearningsCount ? _mostRecentLearningsCount : learnings.length;
+
+    var mostRecentLearnings = learnings.sublist(0, mostRecentLearningsCount);
+
     emit(
       state.copyWith(
         learnings: learnings,
+        mostRecentLearnings: mostRecentLearnings,
         isLoading: false,
+        // TODO remove mock values
+        learningsPastMonth: 42,
+        learningsPastSevenDays: 5,
       ),
     );
   }
 
-  reload() {
+  void reload() {
     _initialize();
   }
 }

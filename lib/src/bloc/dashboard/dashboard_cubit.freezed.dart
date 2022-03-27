@@ -19,10 +19,17 @@ class _$DashboardStateTearOff {
   const _$DashboardStateTearOff();
 
   _DashboardState call(
-      {List<LearningModel> learnings = const [], bool isLoading = false}) {
+      {List<LearningModel> learnings = const [],
+      List<LearningModel> mostRecentLearnings = const [],
+      bool isLoading = false,
+      int learningsPastSevenDays = 0,
+      int learningsPastMonth = 0}) {
     return _DashboardState(
       learnings: learnings,
+      mostRecentLearnings: mostRecentLearnings,
       isLoading: isLoading,
+      learningsPastSevenDays: learningsPastSevenDays,
+      learningsPastMonth: learningsPastMonth,
     );
   }
 }
@@ -33,7 +40,11 @@ const $DashboardState = _$DashboardStateTearOff();
 /// @nodoc
 mixin _$DashboardState {
   List<LearningModel> get learnings => throw _privateConstructorUsedError;
+  List<LearningModel> get mostRecentLearnings =>
+      throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  int get learningsPastSevenDays => throw _privateConstructorUsedError;
+  int get learningsPastMonth => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DashboardStateCopyWith<DashboardState> get copyWith =>
@@ -45,7 +56,12 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res>;
-  $Res call({List<LearningModel> learnings, bool isLoading});
+  $Res call(
+      {List<LearningModel> learnings,
+      List<LearningModel> mostRecentLearnings,
+      bool isLoading,
+      int learningsPastSevenDays,
+      int learningsPastMonth});
 }
 
 /// @nodoc
@@ -60,17 +76,32 @@ class _$DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? learnings = freezed,
+    Object? mostRecentLearnings = freezed,
     Object? isLoading = freezed,
+    Object? learningsPastSevenDays = freezed,
+    Object? learningsPastMonth = freezed,
   }) {
     return _then(_value.copyWith(
       learnings: learnings == freezed
           ? _value.learnings
           : learnings // ignore: cast_nullable_to_non_nullable
               as List<LearningModel>,
+      mostRecentLearnings: mostRecentLearnings == freezed
+          ? _value.mostRecentLearnings
+          : mostRecentLearnings // ignore: cast_nullable_to_non_nullable
+              as List<LearningModel>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      learningsPastSevenDays: learningsPastSevenDays == freezed
+          ? _value.learningsPastSevenDays
+          : learningsPastSevenDays // ignore: cast_nullable_to_non_nullable
+              as int,
+      learningsPastMonth: learningsPastMonth == freezed
+          ? _value.learningsPastMonth
+          : learningsPastMonth // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -82,7 +113,12 @@ abstract class _$DashboardStateCopyWith<$Res>
           _DashboardState value, $Res Function(_DashboardState) then) =
       __$DashboardStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<LearningModel> learnings, bool isLoading});
+  $Res call(
+      {List<LearningModel> learnings,
+      List<LearningModel> mostRecentLearnings,
+      bool isLoading,
+      int learningsPastSevenDays,
+      int learningsPastMonth});
 }
 
 /// @nodoc
@@ -99,17 +135,32 @@ class __$DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? learnings = freezed,
+    Object? mostRecentLearnings = freezed,
     Object? isLoading = freezed,
+    Object? learningsPastSevenDays = freezed,
+    Object? learningsPastMonth = freezed,
   }) {
     return _then(_DashboardState(
       learnings: learnings == freezed
           ? _value.learnings
           : learnings // ignore: cast_nullable_to_non_nullable
               as List<LearningModel>,
+      mostRecentLearnings: mostRecentLearnings == freezed
+          ? _value.mostRecentLearnings
+          : mostRecentLearnings // ignore: cast_nullable_to_non_nullable
+              as List<LearningModel>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      learningsPastSevenDays: learningsPastSevenDays == freezed
+          ? _value.learningsPastSevenDays
+          : learningsPastSevenDays // ignore: cast_nullable_to_non_nullable
+              as int,
+      learningsPastMonth: learningsPastMonth == freezed
+          ? _value.learningsPastMonth
+          : learningsPastMonth // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -117,18 +168,32 @@ class __$DashboardStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DashboardState implements _DashboardState {
-  const _$_DashboardState({this.learnings = const [], this.isLoading = false});
+  const _$_DashboardState(
+      {this.learnings = const [],
+      this.mostRecentLearnings = const [],
+      this.isLoading = false,
+      this.learningsPastSevenDays = 0,
+      this.learningsPastMonth = 0});
 
   @JsonKey()
   @override
   final List<LearningModel> learnings;
   @JsonKey()
   @override
+  final List<LearningModel> mostRecentLearnings;
+  @JsonKey()
+  @override
   final bool isLoading;
+  @JsonKey()
+  @override
+  final int learningsPastSevenDays;
+  @JsonKey()
+  @override
+  final int learningsPastMonth;
 
   @override
   String toString() {
-    return 'DashboardState(learnings: $learnings, isLoading: $isLoading)';
+    return 'DashboardState(learnings: $learnings, mostRecentLearnings: $mostRecentLearnings, isLoading: $isLoading, learningsPastSevenDays: $learningsPastSevenDays, learningsPastMonth: $learningsPastMonth)';
   }
 
   @override
@@ -137,14 +202,23 @@ class _$_DashboardState implements _DashboardState {
         (other.runtimeType == runtimeType &&
             other is _DashboardState &&
             const DeepCollectionEquality().equals(other.learnings, learnings) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading));
+            const DeepCollectionEquality()
+                .equals(other.mostRecentLearnings, mostRecentLearnings) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.learningsPastSevenDays, learningsPastSevenDays) &&
+            const DeepCollectionEquality()
+                .equals(other.learningsPastMonth, learningsPastMonth));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(learnings),
-      const DeepCollectionEquality().hash(isLoading));
+      const DeepCollectionEquality().hash(mostRecentLearnings),
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(learningsPastSevenDays),
+      const DeepCollectionEquality().hash(learningsPastMonth));
 
   @JsonKey(ignore: true)
   @override
@@ -154,12 +228,22 @@ class _$_DashboardState implements _DashboardState {
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {List<LearningModel> learnings, bool isLoading}) = _$_DashboardState;
+      {List<LearningModel> learnings,
+      List<LearningModel> mostRecentLearnings,
+      bool isLoading,
+      int learningsPastSevenDays,
+      int learningsPastMonth}) = _$_DashboardState;
 
   @override
   List<LearningModel> get learnings;
   @override
+  List<LearningModel> get mostRecentLearnings;
+  @override
   bool get isLoading;
+  @override
+  int get learningsPastSevenDays;
+  @override
+  int get learningsPastMonth;
   @override
   @JsonKey(ignore: true)
   _$DashboardStateCopyWith<_DashboardState> get copyWith =>

@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:today_i_learned/src/pages/create_learning/create_learning_page.dart';
+import 'package:today_i_learned/src/config/app_theme.dart';
 import 'package:today_i_learned/src/repositories/learning/learning_repository.dart';
 import 'package:today_i_learned/src/router/app_router.dart';
 
@@ -20,11 +21,12 @@ class TodayILearnedApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: AppTheme.light,
         routerDelegate: AppRouter.router.routerDelegate,
         routeInformationParser: AppRouter.router.routeInformationParser,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
       ),
     );
   }

@@ -11,6 +11,10 @@ _$_LearningModel _$$_LearningModelFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
+      created: DateTime.parse(json['created'] as String),
+      updated: json['updated'] == null
+          ? null
+          : DateTime.parse(json['updated'] as String),
     );
 
 Map<String, dynamic> _$$_LearningModelToJson(_$_LearningModel instance) =>
@@ -18,4 +22,6 @@ Map<String, dynamic> _$$_LearningModelToJson(_$_LearningModel instance) =>
       'uid': instance.uid,
       'title': instance.title,
       'description': instance.description,
+      'created': instance.created.toIso8601String(),
+      'updated': instance.updated?.toIso8601String(),
     };

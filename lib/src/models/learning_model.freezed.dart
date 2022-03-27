@@ -25,11 +25,15 @@ class _$LearningModelTearOff {
   _LearningModel call(
       {required String uid,
       required String title,
-      required String description}) {
+      required String description,
+      required DateTime created,
+      DateTime? updated}) {
     return _LearningModel(
       uid: uid,
       title: title,
       description: description,
+      created: created,
+      updated: updated,
     );
   }
 
@@ -46,6 +50,8 @@ mixin _$LearningModel {
   String get uid => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  DateTime get created => throw _privateConstructorUsedError;
+  DateTime? get updated => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +64,12 @@ abstract class $LearningModelCopyWith<$Res> {
   factory $LearningModelCopyWith(
           LearningModel value, $Res Function(LearningModel) then) =
       _$LearningModelCopyWithImpl<$Res>;
-  $Res call({String uid, String title, String description});
+  $Res call(
+      {String uid,
+      String title,
+      String description,
+      DateTime created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -75,6 +86,8 @@ class _$LearningModelCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_value.copyWith(
       uid: uid == freezed
@@ -89,6 +102,14 @@ class _$LearningModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updated: updated == freezed
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -100,7 +121,12 @@ abstract class _$LearningModelCopyWith<$Res>
           _LearningModel value, $Res Function(_LearningModel) then) =
       __$LearningModelCopyWithImpl<$Res>;
   @override
-  $Res call({String uid, String title, String description});
+  $Res call(
+      {String uid,
+      String title,
+      String description,
+      DateTime created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -119,6 +145,8 @@ class __$LearningModelCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_LearningModel(
       uid: uid == freezed
@@ -133,6 +161,14 @@ class __$LearningModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updated: updated == freezed
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -141,7 +177,11 @@ class __$LearningModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LearningModel implements _LearningModel {
   _$_LearningModel(
-      {required this.uid, required this.title, required this.description});
+      {required this.uid,
+      required this.title,
+      required this.description,
+      required this.created,
+      this.updated});
 
   factory _$_LearningModel.fromJson(Map<String, dynamic> json) =>
       _$$_LearningModelFromJson(json);
@@ -152,10 +192,14 @@ class _$_LearningModel implements _LearningModel {
   final String title;
   @override
   final String description;
+  @override
+  final DateTime created;
+  @override
+  final DateTime? updated;
 
   @override
   String toString() {
-    return 'LearningModel(uid: $uid, title: $title, description: $description)';
+    return 'LearningModel(uid: $uid, title: $title, description: $description, created: $created, updated: $updated)';
   }
 
   @override
@@ -166,7 +210,9 @@ class _$_LearningModel implements _LearningModel {
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
-                .equals(other.description, description));
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.created, created) &&
+            const DeepCollectionEquality().equals(other.updated, updated));
   }
 
   @override
@@ -174,7 +220,9 @@ class _$_LearningModel implements _LearningModel {
       runtimeType,
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description));
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(created),
+      const DeepCollectionEquality().hash(updated));
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +239,9 @@ abstract class _LearningModel implements LearningModel {
   factory _LearningModel(
       {required String uid,
       required String title,
-      required String description}) = _$_LearningModel;
+      required String description,
+      required DateTime created,
+      DateTime? updated}) = _$_LearningModel;
 
   factory _LearningModel.fromJson(Map<String, dynamic> json) =
       _$_LearningModel.fromJson;
@@ -202,6 +252,10 @@ abstract class _LearningModel implements LearningModel {
   String get title;
   @override
   String get description;
+  @override
+  DateTime get created;
+  @override
+  DateTime? get updated;
   @override
   @JsonKey(ignore: true)
   _$LearningModelCopyWith<_LearningModel> get copyWith =>

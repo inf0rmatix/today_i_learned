@@ -38,6 +38,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
           uid: '',
           title: state.title,
           description: state.description,
+          created: DateTime.now(),
         ),
       );
     } else {
@@ -45,6 +46,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
         learning.copyWith(
           title: state.title,
           description: state.description,
+          updated: DateTime.now(),
         ),
       );
     }

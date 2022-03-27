@@ -1,0 +1,16 @@
+{
+  "common": {
+    "date_format": {
+      "weekday_date": "EEEE, d.MM."
+    },
+    "hello": "hello"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "score_seven_days_title": "Past 7 days",
+    "score_seven_days_text": "You made {} learnings!",
+    "score_past_month_title": "Past month",
+    "score_past_month_text": "{} things were learned!",
+    "last_learned_title": "Last Learned"
+  }
+}
