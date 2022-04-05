@@ -5,7 +5,8 @@ import 'package:today_i_learned/router/app_routes.dart';
 
 class AppRouter {
   static final router = GoRouter(
-    initialLocation: '/dashboard', // TODO(1nf0rmatix): implement startup page, https://app.clickup.com/t/2389vgx.
+    // TODO(1nf0rmatix): implement startup page, https://app.clickup.com/t/2389vgx.
+    initialLocation: '/dashboard',
     routes: [
       GoRoute(
         path: '/dashboard',
