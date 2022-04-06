@@ -37,6 +37,8 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
               uid: '',
               title: state.title,
               description: state.description,
+              difficulty: 'super hard', // TODO(1nf0rmatix): remove mock values
+              category: 'flutter',
               created: DateTime.now(),
             ),
           )
