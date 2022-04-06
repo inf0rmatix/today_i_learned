@@ -13,14 +13,19 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  freezed_annotation: null
   go_router: ^3.0.6
   intl: ^0.17.0
+  json_annotation: ^4.4.0
 
 dev_dependencies:
-  bloc_test: ^9.0.3
+  # bloc_test: ^9.0.3
+  build_runner: ^2.1.8
   flutter_test:
     sdk: flutter
-  mocktail: ^0.3.0
+  freezed: ^1.1.1
+  json_serializable: ^6.1.5
+  # mocktail: ^0.3.0
   very_good_analysis: ^2.4.0
 
 flutter:
