@@ -1,4 +1,4 @@
-import 'package:today_i_learned/src/models/learning_model.dart';
+import 'package:today_i_learned/src/core/core.dart';
 
 class LearningsMock {
   static final learnings = <LearningModel>[
