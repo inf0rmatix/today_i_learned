@@ -59,4 +59,12 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
       ),
     );
   }
+
+  void changeDifficulty(String difficulty) {
+    emit(state.copyWith(difficulty: difficulty));
+  }
+
+  void changeCategory(String category) {
+    emit(state.copyWith(category: category));
+  }
 }

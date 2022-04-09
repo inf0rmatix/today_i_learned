@@ -35,23 +35,31 @@ class _CreateLearningPageView extends StatelessWidget {
               children: [
                 const Text('What did you learn?'),
                 const SizedBox(height: AppSpacing.L),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text('Title'),
-                  ),
+                CustomTextFormField(
+                  label: 'Title',
                   onChanged: (title) =>
                       context.read<CreateLearningCubit>().changeTitle(title),
                 ),
                 const SizedBox(height: AppSpacing.L),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text('Description'),
-                  ),
+                CustomTextFormField(
+                  label: 'Description',
                   onChanged: (description) => context
                       .read<CreateLearningCubit>()
                       .changeDescription(description),
+                ),
+                const SizedBox(height: AppSpacing.L),
+                CustomTextFormField(
+                  label: 'Difficulty',
+                  onChanged: (description) => context
+                      .read<CreateLearningCubit>()
+                      .changeDifficulty(description),
+                ),
+                const SizedBox(height: AppSpacing.L),
+                CustomTextFormField(
+                  label: 'Category',
+                  onChanged: (description) => context
+                      .read<CreateLearningCubit>()
+                      .changeCategory(description),
                 ),
                 const SizedBox(height: AppSpacing.L),
                 ElevatedButton.icon(
