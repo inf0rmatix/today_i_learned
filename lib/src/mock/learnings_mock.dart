@@ -51,4 +51,10 @@ class LearningsMock {
       created: DateTime(2022, 3, 8),
     ),
   ];
+
+  static Future createAll(LearningRepository learningRepository) async {
+    for (var learning in learnings) {
+      await learningRepository.create(learning);
+    }
+  }
 }

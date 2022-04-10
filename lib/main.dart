@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/mock/categories_mock.dart';
 import 'package:today_i_learned/src/mock/learnings_mock.dart';
 import 'package:today_i_learned/src/today_i_learned_app.dart';
 
@@ -15,9 +16,10 @@ Future<void> mainInMemory() async {
   AppRouter.initialize();
 
   var learningRepository = LearningRepositoryMemory();
+  var categoryRepository = CategoryRepositoryMemory();
 
-  await Future.wait(LearningsMock.learnings
-      .map((learning) => learningRepository.create(learning)));
+  await LearningsMock.createAll(learningRepository);
+  await CategoriesMock.createAll(categoryRepository);
 
   runApp(
     EasyLocalization(
