@@ -27,9 +27,8 @@ class DashboardCubit extends Cubit<DashboardState> {
 
     learnings.sort((a, b) => b.created.compareTo(a.created));
 
-    var mostRecentLearningsCount = learnings.length > _mostRecentLearningsCount
-        ? _mostRecentLearningsCount
-        : learnings.length;
+    var mostRecentLearningsCount =
+        learnings.length > _mostRecentLearningsCount ? _mostRecentLearningsCount : learnings.length;
 
     var mostRecentLearnings = learnings.sublist(0, mostRecentLearningsCount);
 
@@ -39,7 +38,9 @@ class DashboardCubit extends Cubit<DashboardState> {
         mostRecentLearnings: mostRecentLearnings,
         isLoading: false,
         // TODO(1nf0rmatix): remove mock values.
+        // ignore: no-magic-number
         learningsPastMonth: 42,
+        // ignore: no-magic-number
         learningsPastSevenDays: 5,
       ),
     );

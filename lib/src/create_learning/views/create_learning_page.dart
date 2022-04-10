@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:today_i_learned/src/core/config/config.dart';
 import 'package:today_i_learned/src/core/core.dart';
 import 'package:today_i_learned/src/core/widgets/custom_slider.dart';
 import 'package:today_i_learned/src/create_learning/blocs/blocs.dart';
@@ -71,7 +70,7 @@ class _CreateLearningPageView extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: AppSpacing.L),
-                CustomText('How hard was it? 0 - super easy, 10 - super hard'),
+                const CustomText('How hard was it? 0 - super easy, 10 - super hard'),
                 BlocSelector<CreateLearningCubit, CreateLearningState, double>(
                   selector: (state) => state.difficulty,
                   builder: (context, difficulty) => CustomSlider(

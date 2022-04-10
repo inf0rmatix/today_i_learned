@@ -1,3 +1,5 @@
+// ignore_for_file: no-magic-number
+
 part of 'dashboard_cubit.dart';
 
 @freezed

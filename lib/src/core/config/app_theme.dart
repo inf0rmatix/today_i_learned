@@ -18,7 +18,7 @@ class AppTheme {
     ),
     textTheme: Typography.whiteHelsinki,
   ).copyWith(
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle.light,
     ),
     cardTheme: const CardTheme(elevation: 2),

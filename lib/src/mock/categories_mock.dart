@@ -1,5 +1,4 @@
 import 'package:today_i_learned/src/core/core.dart';
-import 'package:today_i_learned/src/core/models/category/category_model.dart';
 
 class CategoriesMock {
   static const List<String> categoryNames = [
@@ -7,7 +6,7 @@ class CategoriesMock {
     'Self-Management',
     'Mental-Health',
     'General Knowledge',
-    'Science'
+    'Science',
   ];
 
   static Future createAll(CategoryRepository categoryRepository) async {
