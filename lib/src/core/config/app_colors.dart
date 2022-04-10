@@ -8,6 +8,8 @@ class AppColors {
   static const sandyBrown = Color(0xFFF4A259);
   static const seashell = Color(0xFFFEF4EC);
   static const wintergreenDream = Color(0xFF5B8E7D);
+  static const greenSheen = Color(0xFF76A797);
+  static const illuminatingEmerald = Color(0xFF418B72);
   static const bittersweetShimmer = Color(0xFFBC4B51); // error
 
   static const emerald = Color(0xFF439A86);

@@ -16,27 +16,22 @@ class ScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: _height,
       width: _width,
-      padding: const EdgeInsets.only(right: AppSpacing.XL),
-      decoration: BoxDecoration(
-        color: AppColors.lavender,
-        borderRadius: BorderRadius.circular(AppSpacing.M),
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: AppSpacing.S,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.only(right: AppSpacing.XL),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              CustomText.headline1(title),
+              const SizedBox(height: AppSpacing.L),
+              CustomText.headline2(subtitle),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          CustomText.headline1(title),
-          const SizedBox(height: AppSpacing.L),
-          CustomText.headline2(subtitle),
-        ],
+        ),
       ),
     );
   }

@@ -25,6 +25,7 @@ class TodayILearnedApp extends StatelessWidget {
           RepositoryProvider.value(value: categoryRepository),
         ],
         child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: AppTheme.light,
           routerDelegate: AppRouter.router.routerDelegate,
