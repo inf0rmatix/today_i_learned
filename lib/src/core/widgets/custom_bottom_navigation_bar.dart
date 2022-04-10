@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/core/config/config.dart';
+import 'package:today_i_learned/src/core/core.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final ThemeData theme;
@@ -15,44 +15,42 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: theme,
-      child: Material(
-        child: Column(
-          children: [
-            Expanded(child: child ?? Container()),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: theme.backgroundColor,
-                boxShadow: const [
-                  BoxShadow(
-                    blurStyle: BlurStyle.outer,
-                    blurRadius: AppSpacing.XS,
-                    color: Colors.black45,
-                  ),
-                ],
-              ),
-              child: SafeArea(
-                top: false,
-                child: Material(
-                  child: Row(
-                    children: [
-                      CustomBottomNavigationBarElement(
-                        icon: Icons.dashboard_rounded,
-                        title: 'Dashboard',
-                        onTap: () => print('hello'),
-                      ),
-                      const SizedBox(width: AppSpacing.XL),
-                      CustomBottomNavigationBarElement(
-                        icon: Icons.list_rounded,
-                        title: 'Learnings',
-                        onTap: () => print('hello'),
-                      ),
-                    ],
-                  ),
+      child: Column(
+        children: [
+          Expanded(child: child ?? Container()),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: theme.backgroundColor,
+              boxShadow: const [
+                BoxShadow(
+                  blurStyle: BlurStyle.outer,
+                  blurRadius: AppSpacing.S,
+                  color: Colors.black45,
+                ),
+              ],
+            ),
+            child: SafeArea(
+              top: false,
+              child: Material(
+                child: Row(
+                  children: [
+                    CustomBottomNavigationBarElement(
+                      icon: Icons.dashboard_rounded,
+                      title: 'Dashboard',
+                      onTap: () => AppRouter.router.goNamed(AppRoutes.dashboard),
+                    ),
+                    const SizedBox(width: AppSpacing.XL),
+                    CustomBottomNavigationBarElement(
+                      icon: Icons.list_rounded,
+                      title: 'Learnings',
+                      onTap: () => AppRouter.router.goNamed(AppRoutes.allLearnings),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

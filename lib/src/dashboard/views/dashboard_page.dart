@@ -34,8 +34,9 @@ class _DashboardPageView extends StatelessWidget {
         onPressed: () => context.goNamed(AppRoutes.createLearning),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(AppSpacing.L),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.M),
         child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: AppSpacing.M),
           children: [
             Wrap(
               spacing: AppSpacing.L,
@@ -45,10 +46,8 @@ class _DashboardPageView extends StatelessWidget {
                   selector: (state) => state.learningsPastSevenDays,
                   builder: (context, learningsPastSevenDays) {
                     return ScoreCard(
-                      title: LocaleKeys.dashboard_score_seven_days_title
-                          .translate(),
-                      subtitle:
-                          LocaleKeys.dashboard_score_seven_days_text.translate(
+                      title: LocaleKeys.dashboard_score_seven_days_title.translate(),
+                      subtitle: LocaleKeys.dashboard_score_seven_days_text.translate(
                         arguments: [learningsPastSevenDays.toString()],
                       ),
                     );
@@ -58,17 +57,14 @@ class _DashboardPageView extends StatelessWidget {
                   selector: (state) => state.learningsPastMonth,
                   builder: (context, learningsPastMonth) {
                     return ScoreCard(
-                      title: LocaleKeys.dashboard_score_past_month_title
-                          .translate(),
-                      subtitle:
-                          LocaleKeys.dashboard_score_past_month_text.translate(
+                      title: LocaleKeys.dashboard_score_past_month_title.translate(),
+                      subtitle: LocaleKeys.dashboard_score_past_month_text.translate(
                         arguments: [learningsPastMonth.toString()],
                       ),
                     );
                   },
                 ),
-                BlocSelector<DashboardCubit, DashboardState,
-                    List<LearningModel>>(
+                BlocSelector<DashboardCubit, DashboardState, List<LearningModel>>(
                   selector: (state) => state.mostRecentLearnings,
                   builder: (context, mostRecentLearnings) {
                     return LastLearned(learnings: mostRecentLearnings);

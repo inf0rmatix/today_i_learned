@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:today_i_learned/src/core/core.dart';
-import 'package:today_i_learned/src/core/widgets/custom_slider.dart';
 import 'package:today_i_learned/src/create_learning/blocs/blocs.dart';
 
 class CreateLearningPage extends StatelessWidget {
