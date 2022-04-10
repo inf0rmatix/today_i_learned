@@ -5,26 +5,34 @@ import 'package:today_i_learned/src/core/core.dart';
 
 class TodayILearnedApp extends StatelessWidget {
   final LearningRepository learningRepository;
+  final CategoryRepository categoryRepository;
 
   const TodayILearnedApp({
     Key? key,
     required this.learningRepository,
+    required this.categoryRepository,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
+    return MultiBlocProvider(
       providers: [
-        RepositoryProvider.value(value: learningRepository),
+        BlocProvider(create: (_) => CategoriesCubit(categoryRepository: categoryRepository)),
       ],
-      child: MaterialApp.router(
-        title: 'Flutter Demo',
-        theme: AppTheme.light,
-        routerDelegate: AppRouter.router.routerDelegate,
-        routeInformationParser: AppRouter.router.routeInformationParser,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
+      child: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider.value(value: learningRepository),
+          RepositoryProvider.value(value: categoryRepository),
+        ],
+        child: MaterialApp.router(
+          title: 'Flutter Demo',
+          theme: AppTheme.light,
+          routerDelegate: AppRouter.router.routerDelegate,
+          routeInformationParser: AppRouter.router.routeInformationParser,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+        ),
       ),
     );
   }

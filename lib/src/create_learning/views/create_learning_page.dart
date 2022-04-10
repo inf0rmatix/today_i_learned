@@ -11,6 +11,7 @@ class CreateLearningPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => CreateLearningCubit(
         learningRepository: context.read<LearningRepository>(),
+        categoriesCubit: context.read<CategoriesCubit>(),
       ),
       child: const _CreateLearningPageView(),
     );
@@ -50,9 +51,27 @@ class _CreateLearningPageView extends StatelessWidget {
                   onChanged: (description) => context.read<CreateLearningCubit>().changeDifficulty(description),
                 ),
                 const SizedBox(height: AppSpacing.L),
-                CustomTextFormField(
-                  label: 'Category',
-                  onChanged: (description) => context.read<CreateLearningCubit>().changeCategory(description),
+                BlocSelector<CategoriesCubit, CategoriesState, List<CategoryModel>>(
+                  selector: (state) => state.categories,
+                  builder: (context, categories) {
+                    return BlocSelector<CreateLearningCubit, CreateLearningState, CategoryModel?>(
+                      selector: (state) => state.category,
+                      builder: (context, selectedCategory) {
+                        return CustomDropdownButtonFormField<CategoryModel>(
+                          value: selectedCategory,
+                          items: List.generate(
+                            categories.length,
+                            (index) => DropdownMenuItem(
+                              child: Text(categories[index].name),
+                              value: categories[index],
+                            ),
+                          ),
+                          onChanged: (category) => context.read<CreateLearningCubit>().changeCategory(category),
+                          label: 'Category',
+                        );
+                      },
+                    );
+                  },
                 ),
                 const SizedBox(height: AppSpacing.L),
                 ElevatedButton.icon(

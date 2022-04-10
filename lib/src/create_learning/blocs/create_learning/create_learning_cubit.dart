@@ -6,11 +6,15 @@ part 'create_learning_cubit.freezed.dart';
 part 'create_learning_state.dart';
 
 class CreateLearningCubit extends Cubit<CreateLearningState> {
-  LearningRepository learningRepository;
+  final LearningRepository learningRepository;
+  final CategoriesCubit categoriesCubit;
 
   CreateLearningCubit({
     required this.learningRepository,
-  }) : super(const CreateLearningState());
+    required this.categoriesCubit,
+  }) : super(const CreateLearningState()) {
+    _initialize();
+  }
 
   void changeTitle(String value) {
     emit(state.copyWith(title: value));
@@ -18,6 +22,14 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
 
   void changeDescription(String description) {
     emit(state.copyWith(description: description));
+  }
+
+  void changeDifficulty(String difficulty) {
+    emit(state.copyWith(difficulty: difficulty));
+  }
+
+  void changeCategory(CategoryModel? category) {
+    emit(state.copyWith(category: category));
   }
 
   Future<void> save() async {
@@ -38,7 +50,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
               title: state.title,
               description: state.description,
               difficulty: 'super hard', // TODO(1nf0rmatix): remove mock values
-              category: 'flutter',
+              category: state.category?.uid,
               created: DateTime.now(),
             ),
           )
@@ -46,6 +58,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
             learning.copyWith(
               title: state.title,
               description: state.description,
+              category: state.category?.uid,
               updated: DateTime.now(),
             ),
           );
@@ -60,11 +73,13 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
     );
   }
 
-  void changeDifficulty(String difficulty) {
-    emit(state.copyWith(difficulty: difficulty));
-  }
+  Future<void> _initialize() async {
+    emit(state.copyWith(isLoading: true));
 
-  void changeCategory(String category) {
-    emit(state.copyWith(category: category));
+    if (categoriesCubit.state.categories.isEmpty) {
+      await categoriesCubit.fetchCategories();
+    }
+
+    emit(state.copyWith(isLoading: false));
   }
 }

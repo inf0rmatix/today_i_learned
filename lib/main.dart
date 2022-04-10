@@ -30,6 +30,7 @@ Future<void> mainInMemory() async {
       fallbackLocale: const Locale('en'),
       child: TodayILearnedApp(
         learningRepository: learningRepository,
+        categoryRepository: categoryRepository,
       ),
     ),
   );

@@ -7,7 +7,7 @@ class CreateLearningState with _$CreateLearningState {
     @Default('') String title,
     @Default('') String description,
     @Default('') String difficulty,
-    @Default('') String category,
+    CategoryModel? category,
     @Default(false) bool isLoading,
     LearningModel? learning,
   }) = _CreateLearningState;
