@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:today_i_learned/src/core/config/app_alpha.dart';
 import 'package:today_i_learned/src/core/config/app_colors.dart';
 
 class AppTheme {
@@ -18,13 +19,17 @@ class AppTheme {
     ),
     textTheme: Typography.whiteHelsinki,
   ).copyWith(
+    iconTheme: const IconThemeData(
+      color: AppColors.seashell,
+    ),
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle.light,
     ),
     cardTheme: const CardTheme(elevation: 2),
     shadowColor: Colors.black,
     hintColor: AppColors.seashell,
-    highlightColor: AppColors.seashell,
+    splashColor: AppColors.seashell.withAlpha(AppAlpha.a50),
+    highlightColor: AppColors.seashell.withAlpha(AppAlpha.a50),
     inputDecorationTheme: const InputDecorationTheme(
       iconColor: AppColors.seashell,
       prefixIconColor: AppColors.seashell,

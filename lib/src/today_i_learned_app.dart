@@ -15,6 +15,8 @@ class TodayILearnedApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppTheme.light;
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => CategoriesCubit(categoryRepository: categoryRepository)),
@@ -26,13 +28,17 @@ class TodayILearnedApp extends StatelessWidget {
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: AppTheme.light,
+          title: 'Today I Learned',
+          theme: theme,
           routerDelegate: AppRouter.router.routerDelegate,
           routeInformationParser: AppRouter.router.routeInformationParser,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
+          builder: (_, child) => CustomBottomNavigationBar(
+            child: child,
+            theme: theme,
+          ),
         ),
       ),
     );
