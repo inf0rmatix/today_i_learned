@@ -9,7 +9,7 @@ class LearningModel with _$LearningModel {
     required String uid,
     required String title,
     required String description,
-    required String difficulty,
+    required double difficulty,
     String? category,
     required DateTime created,
     DateTime? updated,

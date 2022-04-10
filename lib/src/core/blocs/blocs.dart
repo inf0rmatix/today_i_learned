@@ -1,1 +1,1 @@
-export 'category/categories_cubit.dart';
+export 'categories/categories_cubit.dart';

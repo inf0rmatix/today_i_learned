@@ -12,7 +12,6 @@ class CustomTextFormField extends TextFormField {
   }) : super(
           key: key,
           decoration: InputDecoration(
-            border: const OutlineInputBorder(),
             label: Text(label),
           ),
           onChanged: onChanged,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:today_i_learned/src/core/config/app_colors.dart';
 
 class CustomDropdownButtonFormField<T> extends DropdownButtonFormField<T> {
   CustomDropdownButtonFormField({
@@ -14,7 +15,7 @@ class CustomDropdownButtonFormField<T> extends DropdownButtonFormField<T> {
           onChanged: onChanged,
           decoration: InputDecoration(
             label: label == null ? null : Text(label),
-            border: const OutlineInputBorder(),
           ),
+          iconEnabledColor: AppColors.seashell,
         );
 }

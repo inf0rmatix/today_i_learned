@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:today_i_learned/src/core/core.dart';
 
 class LearningsMock {
@@ -6,7 +8,7 @@ class LearningsMock {
       uid: '',
       title: 'Something nice',
       description: 'I quite appreciate that',
-      difficulty: 'super hard',
+      difficulty: randomDifficulty(),
       category: 'flutter',
       created: DateTime(2022, 3, 2),
     ),
@@ -14,7 +16,7 @@ class LearningsMock {
       uid: '',
       title: 'Something nice',
       description: 'I quite appreciate that',
-      difficulty: 'super hard',
+      difficulty: randomDifficulty(),
       category: 'flutter',
       created: DateTime(2022, 3, 4),
     ),
@@ -22,7 +24,7 @@ class LearningsMock {
       uid: '',
       title: 'Something nice',
       description: 'I quite appreciate that',
-      difficulty: 'super hard',
+      difficulty: randomDifficulty(),
       category: 'flutter',
       created: DateTime(2022, 3, 5),
     ),
@@ -30,7 +32,7 @@ class LearningsMock {
       uid: '',
       title: 'Something nice',
       description: 'I quite appreciate that',
-      difficulty: 'super hard',
+      difficulty: randomDifficulty(),
       category: 'flutter',
       created: DateTime(2022, 3, 5),
     ),
@@ -38,7 +40,7 @@ class LearningsMock {
       uid: '',
       title: 'Something nice',
       description: 'I quite appreciate that',
-      difficulty: 'super hard',
+      difficulty: randomDifficulty(),
       category: 'flutter',
       created: DateTime(2022, 3, 7),
     ),
@@ -46,7 +48,7 @@ class LearningsMock {
       uid: '',
       title: 'Something nice',
       description: 'I quite appreciate that',
-      difficulty: 'super hard',
+      difficulty: randomDifficulty(),
       category: 'flutter',
       created: DateTime(2022, 3, 8),
     ),
@@ -56,5 +58,11 @@ class LearningsMock {
     for (var learning in learnings) {
       await learningRepository.create(learning);
     }
+  }
+
+  static double randomDifficulty() {
+    return (Random().nextDouble() * AppConfig.difficultyMaximum)
+        .clamp(AppConfig.difficultyMinimum, AppConfig.difficultyMaximum)
+        .toDouble();
   }
 }

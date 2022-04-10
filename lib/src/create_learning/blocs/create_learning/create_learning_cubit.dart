@@ -24,7 +24,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
     emit(state.copyWith(description: description));
   }
 
-  void changeDifficulty(String difficulty) {
+  void changeDifficulty(double difficulty) {
     emit(state.copyWith(difficulty: difficulty));
   }
 
@@ -49,7 +49,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
               uid: '',
               title: state.title,
               description: state.description,
-              difficulty: 'super hard', // TODO(1nf0rmatix): remove mock values
+              difficulty: state.difficulty, // TODO(1nf0rmatix): remove mock values
               category: state.category?.uid,
               created: DateTime.now(),
             ),

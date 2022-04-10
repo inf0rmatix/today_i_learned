@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:today_i_learned/src/core/config/config.dart';
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/core/widgets/custom_slider.dart';
 import 'package:today_i_learned/src/create_learning/blocs/blocs.dart';
 
 class CreateLearningPage extends StatelessWidget {
@@ -34,7 +36,7 @@ class _CreateLearningPageView extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.all(AppSpacing.L),
               children: [
-                const Text('What did you learn?'),
+                const CustomText.headline1('What did you learn?'),
                 const SizedBox(height: AppSpacing.L),
                 CustomTextFormField(
                   label: 'Title',
@@ -44,11 +46,6 @@ class _CreateLearningPageView extends StatelessWidget {
                 CustomTextFormField.multiline(
                   label: 'Description',
                   onChanged: (description) => context.read<CreateLearningCubit>().changeDescription(description),
-                ),
-                const SizedBox(height: AppSpacing.L),
-                CustomTextFormField(
-                  label: 'Difficulty',
-                  onChanged: (description) => context.read<CreateLearningCubit>().changeDifficulty(description),
                 ),
                 const SizedBox(height: AppSpacing.L),
                 BlocSelector<CategoriesCubit, CategoriesState, List<CategoryModel>>(
@@ -72,6 +69,21 @@ class _CreateLearningPageView extends StatelessWidget {
                       },
                     );
                   },
+                ),
+                const SizedBox(height: AppSpacing.L),
+                CustomText('How hard was it? 0 - super easy, 10 - super hard'),
+                BlocSelector<CreateLearningCubit, CreateLearningState, double>(
+                  selector: (state) => state.difficulty,
+                  builder: (context, difficulty) => CustomSlider(
+                    // ignore: avoid_redundant_argument_values
+                    min: AppConfig.difficultyMinimum,
+                    max: AppConfig.difficultyMaximum,
+                    divisions: AppConfig.difficultyDivisions,
+                    value: difficulty,
+                    // ignore: no-magic-number
+                    label: difficulty.toStringAsFixed(1),
+                    onChanged: (value) => context.read<CreateLearningCubit>().changeDifficulty(value),
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.L),
                 ElevatedButton.icon(
