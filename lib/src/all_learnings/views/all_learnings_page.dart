@@ -32,10 +32,11 @@ class _AllLearningsView extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Padding(
-              padding: const EdgeInsets.all(AppSpacing.M),
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.M),
               child: BlocSelector<LearningsCubit, LearningsState, List<LearningModel>>(
                 selector: (state) => state.learnings,
                 builder: (context, learnings) => ListView.separated(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.M),
                   itemCount: learnings.length,
                   itemBuilder: (context, index) {
                     var learning = learnings[index];
