@@ -1,53 +1,43 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:today_i_learned/src/all_learnings/widgets/widgets.dart';
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/dashboard/blocs/blocs.dart';
 
 class LastLearned extends StatelessWidget {
-  final List<LearningModel> learnings;
-
-  const LastLearned({
-    Key? key,
-    required this.learnings,
-  }) : super(key: key);
+  const LastLearned({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.XL),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              CustomText.headline1(LocaleKeys.dashboard_last_learned_title.translate()),
-              const SizedBox(height: AppSpacing.L),
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: learnings.length,
-                itemBuilder: (context, index) {
-                  final learning = learnings[index];
-
-                  return Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppSpacing.M),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText.headline3(learning.title),
-                          const SizedBox(height: AppSpacing.S),
-                          CustomText.subtitle(learning.created.formatWeekdayDate(context.locale)),
-                          const SizedBox(height: AppSpacing.M),
-                          CustomText.headline4(learning.description),
-                        ],
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.M),
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Icon(
+                Icons.history_rounded,
+                size: AppIconSize.L,
+              ),
+              title: CustomText.headline1(LocaleKeys.dashboard_last_learned_title.translate()),
+            ),
+            Theme(
+              data: Theme.of(context).copyWith(cardColor: AppColors.greenSheen),
+              child: BlocSelector<DashboardCubit, DashboardState, List<LearningModel>>(
+                selector: (state) => state.mostRecentLearnings,
+                builder: (context, learnings) {
+                  return Column(
+                    children: List.generate(
+                      learnings.length,
+                      (index) => LearningsListElement(
+                        learning: learnings[index],
                       ),
                     ),
                   );
                 },
-                separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.M),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

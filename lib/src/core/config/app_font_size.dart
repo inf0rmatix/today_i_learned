@@ -1,5 +1,7 @@
 class AppFontSize {
   AppFontSize._();
+  static const double superLarge = 84;
+  static const double veryLarge = 42;
 
   static const double headline1 = 24;
   static const double headline2 = 20;
