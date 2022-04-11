@@ -6,4 +6,6 @@ class AppSpacing {
   static const double M = 8;
   static const double S = 0.75 * M;
   static const double XS = 0.5 * S;
+
+  static const double zero = 0;
 }
