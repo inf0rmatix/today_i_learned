@@ -1,5 +1,7 @@
 # TIL - Today I learned
 
+[![style: lint](https://img.shields.io/badge/style-lint-4BC0F5.svg)](https://pub.dev/packages/lint)
+
 With TIL you will get an overview of what you learned in the past.
 The app helps you understand, that you are indeed learning a lot, every day.
 
@@ -8,6 +10,7 @@ The app helps you understand, that you are indeed learning a lot, every day.
 - Freezed
 - BLoC
 - Dart Code Metrics
+- Lint
 
 ## Requirements
 
@@ -24,4 +27,4 @@ The app helps you understand, that you are indeed learning a lot, every day.
 
 ### Translations
 
-`flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/src/translations -o locale_keys.dart`
+`flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/src/core/translations -o locale_keys.dart`

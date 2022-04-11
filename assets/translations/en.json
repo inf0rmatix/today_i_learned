@@ -12,5 +12,13 @@
     "score_past_month_title": "Past month",
     "score_past_month_text": "{} things were learned!",
     "last_learned_title": "Last Learned"
+  },
+  "learning_order_by": {
+    "category_descending": "Category (Desc)",
+    "category_ascending": "Category (Asc)",
+    "difficulty_descending": "Difficulty (Desc)",
+    "difficulty_ascending": "Difficulty (Asc)",
+    "created_descending": "Created (Desc)",
+    "created_ascending": "Created (Asc)"
   }
 }

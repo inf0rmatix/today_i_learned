@@ -10,7 +10,9 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   CategoriesCubit({
     required this.categoryRepository,
-  }) : super(const CategoriesState());
+  }) : super(const CategoriesState()) {
+    fetchCategories();
+  }
 
   Future<void> fetchCategories() async {
     emit(state.copyWith(isLoading: true));
@@ -18,5 +20,9 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     final categories = await categoryRepository.findAll();
 
     emit(state.copyWith(isLoading: false, categories: categories));
+  }
+
+  CategoryModel? findByUid(String? category) {
+    return state.categories.firstWhereOrNull((element) => element.uid == category);
   }
 }

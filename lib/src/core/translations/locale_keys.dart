@@ -12,5 +12,12 @@ abstract class  LocaleKeys {
   static const dashboard_score_past_month_text = 'dashboard.score_past_month_text';
   static const dashboard_last_learned_title = 'dashboard.last_learned_title';
   static const dashboard = 'dashboard';
+  static const learning_order_by_category_descending = 'learning_order_by.category_descending';
+  static const learning_order_by_category_ascending = 'learning_order_by.category_ascending';
+  static const learning_order_by_difficulty_descending = 'learning_order_by.difficulty_descending';
+  static const learning_order_by_difficulty_ascending = 'learning_order_by.difficulty_ascending';
+  static const learning_order_by_created_descending = 'learning_order_by.created_descending';
+  static const learning_order_by_created_ascending = 'learning_order_by.created_ascending';
+  static const learning_order_by = 'learning_order_by';
 
 }

@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:today_i_learned/src/all_learnings/blocs/learnings/learnings_cubit.dart';
+import 'package:today_i_learned/src/all_learnings/widgets/widgets.dart';
 import 'package:today_i_learned/src/core/core.dart';
 
 class AllLearningsPage extends StatelessWidget {
@@ -12,6 +12,7 @@ class AllLearningsPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => LearningsCubit(
         learningRepository: context.read<LearningRepository>(),
+        categoriesCubit: context.read<CategoriesCubit>(),
       ),
       child: const _AllLearningsView(),
     );
@@ -33,43 +34,39 @@ class _AllLearningsView extends StatelessWidget {
           Positioned.fill(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.M),
-              child: BlocSelector<LearningsCubit, LearningsState, List<LearningModel>>(
-                selector: (state) => state.learnings,
-                builder: (context, learnings) => ListView.separated(
+              child: BlocBuilder<LearningsCubit, LearningsState>(
+                buildWhen: (oldState, newState) =>
+                    oldState.learningOrderBy != newState.learningOrderBy ||
+                    oldState.sortedLearnings != newState.sortedLearnings,
+                builder: (context, state) => ListView.separated(
                   padding: const EdgeInsets.symmetric(vertical: AppSpacing.M),
-                  itemCount: learnings.length,
+                  itemCount: state.learnings.length,
                   itemBuilder: (context, index) {
-                    final learning = learnings[index];
+                    final learningWithCategory = state.sortedLearnings[index];
+                    final learning = learningWithCategory.learning;
+                    final category = learningWithCategory.category;
 
-                    return Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            leading: const Icon(
-                              Icons.emoji_events_outlined,
-                              size: AppIconSize.L,
-                            ),
-                            title: Text(learning.title),
-                            subtitle: Text(
-                              '${learning.created.formatWeekdayDate(context.locale)} - Difficulty-Level: ${learning.difficulty}',
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: AppSpacing.M,
-                              right: AppSpacing.M,
-                              bottom: AppSpacing.M,
-                            ),
-                            child: Text(learning.description.truncate(AppConfig.learningDescriptionPreviewLength)),
-                          ),
-                        ],
-                      ),
+                    return LearningsListElement(
+                      learning: learning,
+                      category: category,
                     );
                   },
                   separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.M),
                 ),
               ),
+            ),
+          ),
+          Positioned(
+            bottom: AppSpacing.XL,
+            right: AppSpacing.XL,
+            child: BlocSelector<LearningsCubit, LearningsState, LearningOrderBy>(
+              selector: (state) => state.learningOrderBy,
+              builder: (context, learningOrderBy) {
+                return LearningsSortingSelection(
+                  value: learningOrderBy,
+                  onChanged: (learningOrderBy) => context.read<LearningsCubit>().changeOrderBy(learningOrderBy),
+                );
+              },
             ),
           ),
           BlocSelector<LearningsCubit, LearningsState, bool>(

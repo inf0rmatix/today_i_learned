@@ -15,7 +15,7 @@ Reiciendis accusantium deserunt minima itaque eos. Suscipit eum eius praesentium
  
 Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidunt cumque iste quod et non quisquam. Maiores veritatis quia est aut est repellendus officia dignissimos libero. Nam est atque et. Rerum deleniti labore totam illum autem quis explicabo. Praesentium accusantium dolorem libero sint eum debitis ducimus recusandae.''',
       difficulty: randomDifficulty(),
-      category: 'flutter',
+      category: '3',
       created: DateTime(2022, 3, 2),
     ),
     LearningModel(
@@ -23,7 +23,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       title: 'Something nice',
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
-      category: 'flutter',
+      category: '2',
       created: DateTime(2022, 3, 4),
     ),
     LearningModel(
@@ -31,7 +31,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       title: 'Something nice',
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
-      category: 'flutter',
+      category: '1',
       created: DateTime(2022, 3, 5),
     ),
     LearningModel(
@@ -39,7 +39,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       title: 'Something nice',
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
-      category: 'flutter',
+      category: '2',
       created: DateTime(2022, 3, 5),
     ),
     LearningModel(
@@ -47,7 +47,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       title: 'Something nice',
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
-      category: 'flutter',
+      category: '3',
       created: DateTime(2022, 3, 7),
     ),
     LearningModel(
@@ -55,7 +55,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       title: 'Something nice',
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
-      category: 'flutter',
+      category: '4',
       created: DateTime(2022, 3, 8),
     ),
   ];
