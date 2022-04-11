@@ -57,8 +57,8 @@ class _CreateLearningPageView extends StatelessWidget {
                           items: List.generate(
                             categories.length,
                             (index) => DropdownMenuItem(
-                              child: Text(categories[index].name),
                               value: categories[index],
+                              child: Text(categories[index].name),
                             ),
                           ),
                           onChanged: (category) => context.read<CreateLearningCubit>().changeCategory(category),

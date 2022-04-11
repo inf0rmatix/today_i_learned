@@ -15,7 +15,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Future<void> fetchCategories() async {
     emit(state.copyWith(isLoading: true));
 
-    var categories = await categoryRepository.findAll();
+    final categories = await categoryRepository.findAll();
 
     emit(state.copyWith(isLoading: false, categories: categories));
   }

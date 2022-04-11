@@ -39,7 +39,7 @@ class _AllLearningsView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: AppSpacing.M),
                   itemCount: learnings.length,
                   itemBuilder: (context, index) {
-                    var learning = learnings[index];
+                    final learning = learnings[index];
 
                     return Card(
                       child: Column(

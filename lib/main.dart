@@ -15,8 +15,8 @@ Future<void> mainInMemory() async {
 
   AppRouter.initialize();
 
-  var learningRepository = LearningRepositoryMemory();
-  var categoryRepository = CategoryRepositoryMemory();
+  final learningRepository = LearningRepositoryMemory();
+  final categoryRepository = CategoryRepositoryMemory();
 
   await LearningsMock.createAll(learningRepository);
   await CategoriesMock.createAll(categoryRepository);

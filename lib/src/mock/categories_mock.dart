@@ -1,5 +1,6 @@
 import 'package:today_i_learned/src/core/core.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class CategoriesMock {
   static const List<String> categoryNames = [
     'Flutter',
@@ -10,7 +11,7 @@ class CategoriesMock {
   ];
 
   static Future createAll(CategoryRepository categoryRepository) async {
-    for (var categoryName in categoryNames) {
+    for (final categoryName in categoryNames) {
       await categoryRepository.create(CategoryModel(uid: '', name: categoryName));
     }
   }

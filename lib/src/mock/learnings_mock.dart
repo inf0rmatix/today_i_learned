@@ -2,13 +2,14 @@ import 'dart:math';
 
 import 'package:today_i_learned/src/core/core.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class LearningsMock {
   static final learnings = <LearningModel>[
     LearningModel(
       uid: '',
       title: 'Something nice',
-      description:
-          '''Molestias expedita nam dolores est consequatur aut deleniti aut. Repellendus ipsam molestiae odit exercitationem possimus incidunt sint. Voluptas omnis in laboriosam vitae. Adipisci eum laboriosam qui error dolore quam. Enim aut amet.
+      description: '''
+Molestias expedita nam dolores est consequatur aut deleniti aut. Repellendus ipsam molestiae odit exercitationem possimus incidunt sint. Voluptas omnis in laboriosam vitae. Adipisci eum laboriosam qui error dolore quam. Enim aut amet.
  
 Reiciendis accusantium deserunt minima itaque eos. Suscipit eum eius praesentium odio aliquid facere dolores et. Minus rem vel nobis aliquam.
  
@@ -60,15 +61,15 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
   ];
 
   static Future createAll(LearningRepository learningRepository) async {
-    for (var learning in learnings) {
+    for (final learning in learnings) {
       await learningRepository.create(learning);
     }
   }
 
   static double randomDifficulty() {
-    var stepSize = AppConfig.difficultyMaximum / AppConfig.difficultyDivisions;
+    const stepSize = AppConfig.difficultyMaximum / AppConfig.difficultyDivisions;
 
-    var steps = (Random().nextDouble() * AppConfig.difficultyDivisions).round();
+    final steps = (Random().nextDouble() * AppConfig.difficultyDivisions).round();
 
     return steps * stepSize;
   }

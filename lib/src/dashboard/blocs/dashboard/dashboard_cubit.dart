@@ -23,14 +23,14 @@ class DashboardCubit extends Cubit<DashboardState> {
       ),
     );
 
-    var learnings = await learningRepository.findAll();
+    final learnings = await learningRepository.findAll();
 
     learnings.sort((a, b) => b.created.compareTo(a.created));
 
-    var mostRecentLearningsCount =
+    final mostRecentLearningsCount =
         learnings.length > _mostRecentLearningsCount ? _mostRecentLearningsCount : learnings.length;
 
-    var mostRecentLearnings = learnings.sublist(0, mostRecentLearningsCount);
+    final mostRecentLearnings = learnings.sublist(0, mostRecentLearningsCount);
 
     emit(
       state.copyWith(

@@ -1,5 +1,8 @@
 {
     "cSpell.ignoreWords": [
-        "mocktail"
+        "mocktail",
+        "nullsafety",
+        "setstate",
+        "todos"
     ]
 }

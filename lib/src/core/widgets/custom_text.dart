@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:today_i_learned/src/core/config/config.dart';
 
 class CustomText extends Text {
+  const CustomText(
+    String data, {
+    Key? key,
+  }) : super(
+          data,
+          key: key,
+        );
+
   const CustomText.headline1(
     String data, {
     Key? key,
@@ -54,13 +62,5 @@ class CustomText extends Text {
             fontSize: AppFontSize.subtitle,
             fontWeight: FontWeight.w200,
           ),
-        );
-
-  const CustomText(
-    String data, {
-    Key? key,
-  }) : super(
-          data,
-          key: key,
         );
 }

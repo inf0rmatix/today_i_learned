@@ -15,7 +15,7 @@ class TodayILearnedApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = AppTheme.light;
+    final theme = AppTheme.light;
 
     return MultiBlocProvider(
       providers: [
@@ -36,8 +36,8 @@ class TodayILearnedApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           builder: (_, child) => CustomBottomNavigationBar(
-            child: child,
             theme: theme,
+            child: child,
           ),
         ),
       ),

@@ -14,10 +14,10 @@ class LearningsCubit extends Cubit<LearningsState> {
     _initialize();
   }
 
-  void _initialize() async {
+  Future _initialize() async {
     emit(state.copyWith(isLoading: true));
 
-    var learnings = await learningRepository.findAll();
+    final learnings = await learningRepository.findAll();
 
     emit(state.copyWith(isLoading: false, learnings: learnings));
   }

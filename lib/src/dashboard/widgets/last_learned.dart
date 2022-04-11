@@ -26,7 +26,7 @@ class LastLearned extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: learnings.length,
                 itemBuilder: (context, index) {
-                  var learning = learnings[index];
+                  final learning = learnings[index];
 
                   return Card(
                     child: Padding(

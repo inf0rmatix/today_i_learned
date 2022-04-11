@@ -39,7 +39,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
 
     emit(state.copyWith(isLoading: true));
 
-    var learning = state.learning;
+    final learning = state.learning;
 
     LearningModel newLearning;
 

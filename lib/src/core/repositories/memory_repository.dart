@@ -24,9 +24,9 @@ class MemoryRepository<T> implements CrudRepository<T> {
   Future<T> create(T object) async {
     _idCounter++;
 
-    String uid = _idCounter.toString();
+    final String uid = _idCounter.toString();
 
-    var createdObject = setUid(object, uid);
+    final createdObject = setUid(object, uid);
 
     _data.add(createdObject);
 
@@ -47,14 +47,14 @@ class MemoryRepository<T> implements CrudRepository<T> {
 
   @override
   Future<T?> findOne(String uid) async {
-    var matches = _data.where((element) => getUid(element) == uid);
+    final matches = _data.where((element) => getUid(element) == uid);
 
     return matches.isEmpty ? null : matches.first;
   }
 
   @override
   Future<T> update(T object) async {
-    var index = _data.indexWhere((element) => getUid(element) == getUid(object));
+    final index = _data.indexWhere((element) => getUid(element) == getUid(object));
 
     _data[index] = object;
 
