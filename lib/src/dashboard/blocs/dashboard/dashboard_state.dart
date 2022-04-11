@@ -9,6 +9,7 @@ class DashboardState with _$DashboardState {
     @Default([]) List<LearningModel> mostRecentLearnings,
     @Default(false) bool isLoading,
     @Default(0) int learningsPastSevenDays,
-    @Default(0) int learningsPastMonth,
+    @Default(0) int learningsPastThirtyDays,
+    LearningModel? mostDifficultLearningPast90Days,
   }) = _DashboardState;
 }

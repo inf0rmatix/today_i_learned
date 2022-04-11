@@ -14,8 +14,6 @@ class AppRouter {
   // TODO(1nf0rmatix): add authentication state listening to redirect.
   static void initialize() {
     _router = GoRouter(
-      // TODO(1nf0rmatix): remove this once bottom nav bar is implemented, (https://app.clickup.com/t/244u915).
-      initialLocation: '/all-learnings',
       routes: [
         GoRoute(
           path: '/',

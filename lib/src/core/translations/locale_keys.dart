@@ -8,8 +8,8 @@ abstract class  LocaleKeys {
   static const dashboard_title = 'dashboard.title';
   static const dashboard_score_seven_days_title = 'dashboard.score_seven_days_title';
   static const dashboard_score_seven_days_text = 'dashboard.score_seven_days_text';
-  static const dashboard_score_past_month_title = 'dashboard.score_past_month_title';
-  static const dashboard_score_past_month_text = 'dashboard.score_past_month_text';
+  static const dashboard_score_past_thirty_days_title = 'dashboard.score_past_thirty_days_title';
+  static const dashboard_score_past_thirty_days_text = 'dashboard.score_past_thirty_days_text';
   static const dashboard_last_learned_title = 'dashboard.last_learned_title';
   static const dashboard = 'dashboard';
   static const learning_order_by_category_descending = 'learning_order_by.category_descending';

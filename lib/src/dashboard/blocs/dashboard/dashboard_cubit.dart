@@ -32,16 +32,25 @@ class DashboardCubit extends Cubit<DashboardState> {
 
     final mostRecentLearnings = learnings.sublist(0, mostRecentLearningsCount);
 
+    final now = DateTime.now();
+
+    final pastThirtyDaysLearnings =
+        learnings.where((learning) => learning.created.difference(now).inDays.abs() <= 30).length;
+
+    final pastSevenDaysLearnings =
+        learnings.where((learning) => learning.created.difference(now).inDays.abs() <= 7).length;
+
+    final learningsLast90Days = learnings.where((learning) => learning.created.difference(now).inDays.abs() <= 90);
+    learningsLast90Days.sorted((a, b) => a.difficulty.compareTo(b.difficulty));
+
     emit(
       state.copyWith(
         learnings: learnings,
         mostRecentLearnings: mostRecentLearnings,
         isLoading: false,
-        // TODO(1nf0rmatix): remove mock values.
-        // ignore: no-magic-number
-        learningsPastMonth: 42,
-        // ignore: no-magic-number
-        learningsPastSevenDays: 5,
+        learningsPastThirtyDays: pastThirtyDaysLearnings,
+        learningsPastSevenDays: pastSevenDaysLearnings,
+        mostDifficultLearningPast90Days: learningsLast90Days.isEmpty ? null : learningsLast90Days.first,
       ),
     );
   }

@@ -9,8 +9,8 @@
     "title": "Dashboard",
     "score_seven_days_title": "Past 7 days",
     "score_seven_days_text": "You made {} learnings!",
-    "score_past_month_title": "Past month",
-    "score_past_month_text": "{} things were learned!",
+    "score_past_thirty_days_title": "Past 30 days",
+    "score_past_thirty_days_text": "{} things were learned!",
     "last_learned_title": "Last Learned"
   },
   "learning_order_by": {
