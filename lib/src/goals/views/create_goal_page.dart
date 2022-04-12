@@ -96,9 +96,9 @@ class _CreateGoalView extends StatelessWidget {
                               min: AppConfig.difficultyMinimum,
                               max: AppConfig.difficultyMaximum,
                               divisions: AppConfig.difficultyDivisions,
-                              value: requiredDifficulty ?? 0,
                               // ignore: no-magic-number
-                              label: requiredDifficulty?.toStringAsFixed(1),
+                              value: requiredDifficulty ?? 0,
+                              label: requiredDifficulty?.toStringAsFixed(AppConfig.difficultyFractionDigits),
                               onChanged: isDifficultyRequirementEnabled
                                   ? (value) => context.read<CreateGoalCubit>().changeRequiredDifficulty(value)
                                   : null,

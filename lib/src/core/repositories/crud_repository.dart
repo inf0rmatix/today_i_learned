@@ -1,4 +1,6 @@
 abstract class CrudRepository<T> {
+  // TODO(1nf0rmatix): implement stream for changes with event class that indicates the type of change
+
   String getUid(T object);
 
   T setUid(T object, String uid);
