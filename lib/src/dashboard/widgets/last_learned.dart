@@ -22,7 +22,7 @@ class LastLearned extends StatelessWidget {
               title: CustomText.headline1(LocaleKeys.dashboard_last_learned_title.translate()),
             ),
             Theme(
-              data: Theme.of(context).copyWith(cardColor: AppColors.greenSheen),
+              data: Theme.of(context).copyWith(cardColor: AppColors.olivine),
               child: BlocSelector<DashboardCubit, DashboardState, List<LearningModel>>(
                 selector: (state) => state.mostRecentLearnings,
                 builder: (context, learnings) {

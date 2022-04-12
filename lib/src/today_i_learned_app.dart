@@ -6,11 +6,13 @@ import 'package:today_i_learned/src/core/core.dart';
 class TodayILearnedApp extends StatelessWidget {
   final LearningRepository learningRepository;
   final CategoryRepository categoryRepository;
+  final GoalRepository goalRepository;
 
   const TodayILearnedApp({
     Key? key,
     required this.learningRepository,
     required this.categoryRepository,
+    required this.goalRepository,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class TodayILearnedApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => CategoriesCubit(categoryRepository: categoryRepository)),
+        BlocProvider(create: (_) => GoalsCubit(goalRepository: goalRepository)),
       ],
       child: MultiRepositoryProvider(
         providers: [

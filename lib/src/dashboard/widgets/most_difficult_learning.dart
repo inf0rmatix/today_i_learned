@@ -33,7 +33,7 @@ class MostDifficultLearning extends StatelessWidget {
                     subtitle: Text('Your biggest challenge in 90 days'),
                   ),
                   Theme(
-                    data: Theme.of(context).copyWith(cardColor: AppColors.greenSheen),
+                    data: Theme.of(context).copyWith(cardColor: AppColors.olivine),
                     child: LearningsListElement(learning: mostDifficultLearningPast90Days),
                   ),
                 ],

@@ -15,7 +15,7 @@ class AppTheme {
       error: AppColors.bittersweetShimmer,
       background: AppColors.wintergreenDream,
       onBackground: AppColors.seashell,
-      surface: AppColors.olivine,
+      surface: AppColors.greenSheen,
     ),
     textTheme: Typography.whiteHelsinki,
   ).copyWith(

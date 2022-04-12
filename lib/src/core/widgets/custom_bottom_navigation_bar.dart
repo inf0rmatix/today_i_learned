@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:today_i_learned/src/core/core.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  static const double _actionButtonBottomSpacing = 60;
+  static const double _actionButtonBottomSpacing = 120;
 
   final ThemeData theme;
   final Widget? child;
@@ -49,6 +49,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
                           title: 'Learnings',
                           onTap: () => AppRouter.router.goNamed(AppRoutes.allLearnings),
                         ),
+                        const SizedBox(width: AppSpacing.XL),
+                        CustomBottomNavigationBarElement(
+                          icon: Icons.emoji_events_rounded,
+                          title: 'Goals',
+                          onTap: () => AppRouter.router.goNamed(AppRoutes.goals),
+                        ),
                       ],
                     ),
                   ),
@@ -57,8 +63,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             ],
           ),
           Positioned(
-            right: AppSpacing.zero,
-            left: AppSpacing.zero,
+            right: AppSpacing.XL,
+            // left: AppSpacing.zero,
             bottom: _actionButtonBottomSpacing,
             child: Center(
               child: FloatingActionButton(
@@ -92,7 +98,10 @@ class CustomBottomNavigationBarElement extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: AppSpacing.M),
+          padding: const EdgeInsets.only(
+            top: AppSpacing.L,
+            bottom: AppSpacing.M,
+          ),
           child: Column(
             children: [
               Icon(icon),
