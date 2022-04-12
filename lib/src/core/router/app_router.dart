@@ -3,6 +3,7 @@ import 'package:today_i_learned/src/all_learnings/views/all_learnings_page.dart'
 import 'package:today_i_learned/src/core/router/app_routes.dart';
 import 'package:today_i_learned/src/create_learning/create_learning.dart';
 import 'package:today_i_learned/src/dashboard/dashboard.dart';
+import 'package:today_i_learned/src/goals/views/create_goal_page.dart';
 import 'package:today_i_learned/src/goals/views/goals_page.dart';
 
 class AppRouter {
@@ -38,6 +39,13 @@ class AppRouter {
           path: '/goals',
           name: AppRoutes.goals,
           builder: (_, __) => const GoalsPage(),
+          routes: [
+            GoRoute(
+              path: 'create',
+              name: AppRoutes.createGoal,
+              builder: (_, __) => const CreateGoalPage(),
+            ),
+          ],
         ),
       ],
     );

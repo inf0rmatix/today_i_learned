@@ -28,6 +28,7 @@ class TodayILearnedApp extends StatelessWidget {
         providers: [
           RepositoryProvider.value(value: learningRepository),
           RepositoryProvider.value(value: categoryRepository),
+          RepositoryProvider.value(value: goalRepository),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:today_i_learned/src/core/core.dart';
 import 'package:today_i_learned/src/goals/goals.dart';
 
@@ -27,9 +28,14 @@ class _GoalsView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Goals'),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.goNamed(AppRoutes.createGoal),
+        child: const Icon(Icons.add_rounded),
+      ),
       body: BlocSelector<GoalsCubit, GoalsState, List<GoalModel>>(
         selector: (state) => state.goals.toList(),
         builder: (context, goals) {
+          // ignore: no-magic-number
           goals.sort((a, b) => a.isComplete && !b.isComplete ? 1 : -1);
 
           return ListView.separated(

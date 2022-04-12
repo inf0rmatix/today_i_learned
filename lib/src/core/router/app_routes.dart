@@ -6,4 +6,5 @@ abstract class AppRoutes {
   static const String allLearnings = 'allLearnings';
 
   static const String goals = 'goals';
+  static const String createGoal = 'createGoal';
 }

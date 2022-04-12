@@ -7,6 +7,7 @@ class CustomTextFormField extends TextFormField {
   CustomTextFormField({
     Key? key,
     required String label,
+    String? initialValue,
     void Function(String)? onChanged,
     int? minLines,
     String? Function(String?)? validator,
@@ -15,6 +16,7 @@ class CustomTextFormField extends TextFormField {
           decoration: InputDecoration(
             label: Text(label),
           ),
+          initialValue: initialValue,
           onChanged: onChanged,
           minLines: minLines,
           maxLines: minLines != null ? _multilineMaxLines : null,
@@ -24,6 +26,7 @@ class CustomTextFormField extends TextFormField {
   factory CustomTextFormField.multiline({
     Key? key,
     required String label,
+    String? initialValue,
     void Function(String)? onChanged,
     String? Function(String?)? validator,
   }) =>
@@ -31,6 +34,7 @@ class CustomTextFormField extends TextFormField {
         key: key,
         label: label,
         onChanged: onChanged,
+        initialValue: initialValue,
         minLines: _multilineMinLines,
         validator: validator,
       );

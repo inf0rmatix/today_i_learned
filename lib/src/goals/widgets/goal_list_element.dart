@@ -12,7 +12,7 @@ class GoalListElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final learningProgress = goal.learnings / goal.requiredLearnings;
+    final learningProgress = goal.requiredLearnings > 0 ? goal.learnings / goal.requiredLearnings : 0.0;
 
     return Card(
       child: Padding(
