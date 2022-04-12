@@ -2,6 +2,7 @@
 
 abstract class  LocaleKeys {
   static const common_date_format_weekday_date = 'common.date_format.weekday_date';
+  static const common_date_format_full_date = 'common.date_format.full_date';
   static const common_date_format = 'common.date_format';
   static const common_hello = 'common.hello';
   static const common = 'common';

@@ -21,69 +21,54 @@ class GoalListElement extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              leading: const Icon(
-                Icons.sports_score_rounded,
+              leading: Icon(
+                goal.isComplete ? Icons.emoji_events_rounded : Icons.sports_score_rounded,
                 size: AppIconSize.L,
               ),
               title: CustomText.headline1(goal.title),
             ),
-            ListTile(
-              leading: const Icon(Icons.event_rounded),
-              title: Text(goal.deadline.formatWeekdayDate(context.locale)),
-            ),
+            if (goal.isComplete && goal.completed != null)
+              ListTile(
+                leading: const Icon(Icons.event_available_rounded),
+                title: Text(goal.completed!.formatFullDate(context.locale)),
+              ),
+            if (!goal.isComplete)
+              ListTile(
+                leading: const Icon(Icons.event_rounded),
+                title: Text(goal.deadline.formatWeekdayDate(context.locale)),
+              ),
             ListTile(
               leading: const Icon(Icons.tag_rounded),
-              title: Text('${goal.requiredLearnings} learnings'),
+              title: Text('${goal.requiredLearnings} Learnings'),
             ),
             if (goal.requiredDifficulty != GoalModel.noDifficultyRequirementValue)
               ListTile(
                 leading: const Icon(Icons.construction_rounded),
                 title: Text('${goal.requiredDifficulty} minimum difficulty'),
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Stack(
-                    children: [
-                      LinearProgressIndicator(
-                        minHeight: AppSpacing.XL,
-                        value: learningProgress,
-                      ),
-                      Positioned(
-                        left: AppSpacing.zero,
-                        right: AppSpacing.zero,
-                        child: Center(
-                          child: CustomText.headline3('${goal.learnings} of ${goal.requiredLearnings} learnings'),
+            if (!goal.isComplete)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        LinearProgressIndicator(
+                          minHeight: AppSpacing.XL,
+                          value: learningProgress,
                         ),
-                      ),
-                    ],
+                        Positioned(
+                          left: AppSpacing.zero,
+                          right: AppSpacing.zero,
+                          child: Center(
+                            child: CustomText.headline3('${goal.learnings} of ${goal.requiredLearnings} learnings'),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Expanded(
-            //       child: Stack(
-            //         children: [
-            //           LinearProgressIndicator(
-            //             minHeight: AppSpacing.XL,
-            //             value: timeProgress,
-            //           ),
-            //           Positioned(
-            //             left: AppSpacing.zero,
-            //             right: AppSpacing.zero,
-            //             child: Center(
-            //               child: CustomText.headline3('$remainingDays days remaining'),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ],
-            // ),
+                ],
+              ),
           ],
         ),
       ),

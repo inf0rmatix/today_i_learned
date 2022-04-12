@@ -8,6 +8,18 @@ class GoalsMock {
     await goalRepository.create(
       GoalModel(
         uid: '',
+        title: 'Learn five things',
+        created: DateTime.now().subtract(const Duration(days: 14)),
+        deadline: DateTime.now().add(const Duration(days: 5)),
+        completed: DateTime.now(),
+        learnings: 5,
+        requiredLearnings: 5,
+      ),
+    );
+
+    await goalRepository.create(
+      GoalModel(
+        uid: '',
         title: 'Learn ten things',
         created: DateTime.now().subtract(const Duration(days: 4)),
         deadline: DateTime.now().add(const Duration(days: 30)),

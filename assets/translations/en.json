@@ -1,7 +1,8 @@
 {
   "common": {
     "date_format": {
-      "weekday_date": "EEEE, d.MM."
+      "weekday_date": "EEEE, d.MM.",
+      "full_date": "d.MM.yyyy"
     },
     "hello": "hello"
   },

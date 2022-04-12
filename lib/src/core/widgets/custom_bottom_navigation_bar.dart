@@ -62,17 +62,17 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-            right: AppSpacing.XL,
-            // left: AppSpacing.zero,
-            bottom: _actionButtonBottomSpacing,
-            child: Center(
-              child: FloatingActionButton(
-                onPressed: () => AppRouter.router.goNamed(AppRoutes.createLearning),
-                child: const Icon(Icons.create_rounded),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   right: AppSpacing.XL,
+          //   // left: AppSpacing.zero,
+          //   bottom: _actionButtonBottomSpacing,
+          //   child: Center(
+          //     child: FloatingActionButton(
+          //       onPressed: () => AppRouter.router.goNamed(AppRoutes.createLearning),
+          //       child: const Icon(Icons.create_rounded),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

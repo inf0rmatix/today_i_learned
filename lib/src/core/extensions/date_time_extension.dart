@@ -10,4 +10,11 @@ extension DateTimeExtension on DateTime {
       locale.languageCode,
     ).format(this);
   }
+
+  String formatFullDate(Locale locale) {
+    return DateFormat(
+      LocaleKeys.common_date_format_full_date.translate(),
+      locale.languageCode,
+    ).format(this);
+  }
 }
