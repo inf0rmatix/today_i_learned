@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/categories/categories.dart';
 import 'package:today_i_learned/src/learnings/blocs/blocs.dart';
@@ -61,14 +62,24 @@ class _LearningsView extends StatelessWidget {
           Positioned(
             bottom: AppSpacing.XL,
             right: AppSpacing.XL,
-            child: BlocSelector<LearningsCubit, LearningsState, LearningOrderBy>(
-              selector: (state) => state.learningOrderBy,
-              builder: (context, learningOrderBy) {
-                return LearningsSortingSelection(
-                  value: learningOrderBy,
-                  onChanged: (learningOrderBy) => context.read<LearningsCubit>().changeOrderBy(learningOrderBy),
-                );
-              },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                BlocSelector<LearningsCubit, LearningsState, LearningOrderBy>(
+                  selector: (state) => state.learningOrderBy,
+                  builder: (context, learningOrderBy) {
+                    return LearningsSortingSelection(
+                      value: learningOrderBy,
+                      onChanged: (learningOrderBy) => context.read<LearningsCubit>().changeOrderBy(learningOrderBy),
+                    );
+                  },
+                ),
+                const SizedBox(width: AppSpacing.L),
+                FloatingActionButton(
+                  child: const Icon(Icons.create_rounded),
+                  onPressed: () => context.goNamed(AppRoutes.createLearning),
+                ),
+              ],
             ),
           ),
           BlocSelector<LearningsCubit, LearningsState, bool>(

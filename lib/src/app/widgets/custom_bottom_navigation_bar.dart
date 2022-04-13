@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:today_i_learned/src/app/app.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  static const double _actionButtonBottomSpacing = 120;
-
   final ThemeData theme;
   final Widget? child;
 
@@ -62,17 +60,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             ],
           ),
-          // Positioned(
-          //   right: AppSpacing.XL,
-          //   // left: AppSpacing.zero,
-          //   bottom: _actionButtonBottomSpacing,
-          //   child: Center(
-          //     child: FloatingActionButton(
-          //       onPressed: () => AppRouter.router.goNamed(AppRoutes.createLearning),
-          //       child: const Icon(Icons.create_rounded),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

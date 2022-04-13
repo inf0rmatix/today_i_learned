@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:today_i_learned/src/app/repositories/repositories.dart';
 import 'package:today_i_learned/src/categories/categories.dart';
 import 'package:today_i_learned/src/learnings/models/models.dart';
 import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
@@ -11,6 +14,8 @@ class LearningsCubit extends Cubit<LearningsState> {
   final LearningRepository learningRepository;
 
   final CategoriesCubit categoriesCubit;
+
+  late StreamSubscription _changesStreamSubscription;
 
   LearningsCubit({
     required this.learningRepository,
@@ -25,6 +30,8 @@ class LearningsCubit extends Cubit<LearningsState> {
     final learnings = await learningRepository.findAll();
 
     emit(state.copyWith(isLoading: false, learnings: learnings));
+
+    _changesStreamSubscription = learningRepository.changes.listen(_onEntityChangedEvent);
 
     sortLearnings(state.learningOrderBy);
   }
@@ -93,6 +100,32 @@ class LearningsCubit extends Cubit<LearningsState> {
 
   void changeOrderBy(LearningOrderBy learningOrderBy) {
     sortLearnings(learningOrderBy);
+  }
+
+  void _onEntityChangedEvent(EntityChangedEvent<LearningModel> event) {
+    switch (event.type) {
+      case EntityChangedEventType.created:
+        emit(state.copyWith(learnings: state.learnings.toList()..add(event.object)));
+        break;
+      case EntityChangedEventType.updated:
+        emit(
+          state.copyWith(
+            learnings: state.learnings.toList()
+              ..removeWhere((element) => element.uid == event.object.uid)
+              ..add(event.object),
+          ),
+        );
+        break;
+      case EntityChangedEventType.deleted:
+        emit(
+          state.copyWith(
+            learnings: state.learnings.toList()..removeWhere((element) => element.uid == event.object.uid),
+          ),
+        );
+        break;
+    }
+
+    sortLearnings(state.learningOrderBy);
   }
 }
 

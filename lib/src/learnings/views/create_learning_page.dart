@@ -100,7 +100,7 @@ class _CreateLearningPageView extends StatelessWidget {
               if (isLoading) {
                 return Positioned.fill(
                   child: Container(
-                    color: Colors.blue.withAlpha(AppAlpha.a200),
+                    color: Colors.black26,
                     child: const Center(
                       child: CircularProgressIndicator(),
                     ),

@@ -15,23 +15,24 @@ class AppRouter {
   // TODO(1nf0rmatix): add authentication state listening to redirect.
   static void initialize() {
     _router = GoRouter(
+      initialLocation: '/learnings/create',
       routes: [
         GoRoute(
           path: '/',
           name: AppRoutes.dashboard,
           builder: (_, __) => const DashboardPage(),
+        ),
+        GoRoute(
+          path: '/learnings',
+          name: AppRoutes.allLearnings,
+          builder: (_, __) => const LearningsPage(),
           routes: [
             GoRoute(
-              path: 'create-learning',
+              path: 'create',
               name: AppRoutes.createLearning,
               builder: (_, __) => const CreateLearningPage(),
             ),
           ],
-        ),
-        GoRoute(
-          path: '/all-learnings',
-          name: AppRoutes.allLearnings,
-          builder: (_, __) => const LearningsPage(),
         ),
         GoRoute(
           path: '/goals',

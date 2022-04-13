@@ -51,7 +51,7 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
               uid: '',
               title: state.title,
               description: state.description,
-              difficulty: state.difficulty, // TODO(1nf0rmatix): remove mock values
+              difficulty: state.difficulty,
               category: state.category?.uid,
               created: DateTime.now(),
             ),
@@ -64,8 +64,6 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
               updated: DateTime.now(),
             ),
           );
-
-    await Future.delayed(const Duration(seconds: 2));
 
     emit(
       state.copyWith(
