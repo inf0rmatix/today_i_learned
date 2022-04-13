@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:today_i_learned/src/core/repositories/crud_repository.dart';
 
 class MemoryRepository<T> implements CrudRepository<T> {
@@ -9,6 +11,11 @@ class MemoryRepository<T> implements CrudRepository<T> {
   final T Function(T object, String uid) _setUid;
   final Map<String, dynamic> Function(T object) _toJson;
   final T Function(Map<String, dynamic> json) _fromJson;
+
+  final StreamController<EntityChangedEvent<T>> _changedStreamController = StreamController.broadcast();
+
+  @override
+  Stream<EntityChangedEvent<T>> get changes => _changedStreamController.stream;
 
   MemoryRepository({
     required String Function(T object) getUid,
@@ -30,12 +37,26 @@ class MemoryRepository<T> implements CrudRepository<T> {
 
     _data.add(createdObject);
 
+    _changedStreamController.add(
+      EntityChangedEvent<T>(
+        object: createdObject,
+        type: EntityChangedEventType.created,
+      ),
+    );
+
     return createdObject;
   }
 
   @override
   Future<bool> delete(T object) async {
     _data.removeWhere((element) => getUid(element) == getUid(object));
+
+    _changedStreamController.add(
+      EntityChangedEvent<T>(
+        object: object,
+        type: EntityChangedEventType.deleted,
+      ),
+    );
 
     return true;
   }
@@ -57,6 +78,13 @@ class MemoryRepository<T> implements CrudRepository<T> {
     final index = _data.indexWhere((element) => getUid(element) == getUid(object));
 
     _data[index] = object;
+
+    _changedStreamController.add(
+      EntityChangedEvent<T>(
+        object: object,
+        type: EntityChangedEventType.updated,
+      ),
+    );
 
     return object;
   }

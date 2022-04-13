@@ -1,5 +1,5 @@
 abstract class CrudRepository<T> {
-  // TODO(1nf0rmatix): implement stream for changes with event class that indicates the type of change
+  Stream<EntityChangedEvent<T>> get changes;
 
   String getUid(T object);
 
@@ -18,4 +18,20 @@ abstract class CrudRepository<T> {
   Future<T> update(T object);
 
   Future<bool> delete(T object);
+}
+
+class EntityChangedEvent<T> {
+  T object;
+  EntityChangedEventType type;
+
+  EntityChangedEvent({
+    required this.object,
+    required this.type,
+  });
+}
+
+enum EntityChangedEventType {
+  created,
+  updated,
+  deleted,
 }

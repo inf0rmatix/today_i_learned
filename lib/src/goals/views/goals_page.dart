@@ -35,6 +35,7 @@ class _GoalsView extends StatelessWidget {
       body: BlocSelector<GoalsCubit, GoalsState, List<GoalModel>>(
         selector: (state) => state.goals.toList(),
         builder: (context, goals) {
+          goals.sort((a, b) => a.deadline.compareTo(b.deadline));
           // ignore: no-magic-number
           goals.sort((a, b) => a.isComplete && !b.isComplete ? 1 : -1);
 
