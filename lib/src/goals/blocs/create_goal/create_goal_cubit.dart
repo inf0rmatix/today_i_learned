@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/goals/models/models.dart';
+import 'package:today_i_learned/src/goals/repositories/repositories.dart';
 
 part 'create_goal_cubit.freezed.dart';
 part 'create_goal_state.dart';

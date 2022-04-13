@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:today_i_learned/src/core/core.dart';
 import 'package:today_i_learned/src/core/repositories/crud_repository.dart';
+import 'package:today_i_learned/src/goals/models/models.dart';
+import 'package:today_i_learned/src/goals/repositories/repositories.dart';
 
 part 'goals_cubit.freezed.dart';
 part 'goals_state.dart';
