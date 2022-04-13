@@ -40,8 +40,9 @@ class DashboardCubit extends Cubit<DashboardState> {
     final pastSevenDaysLearnings =
         learnings.where((learning) => learning.created.difference(now).inDays.abs() <= 7).length;
 
-    final learningsLast90Days = learnings.where((learning) => learning.created.difference(now).inDays.abs() <= 90);
-    learningsLast90Days.sorted((a, b) => a.difficulty.compareTo(b.difficulty));
+    final learningsLast90Days =
+        learnings.where((learning) => learning.created.difference(now).inDays.abs() <= 90).toList();
+    learningsLast90Days.sort((a, b) => b.difficulty.compareTo(a.difficulty));
 
     emit(
       state.copyWith(

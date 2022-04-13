@@ -16,7 +16,7 @@ Reiciendis accusantium deserunt minima itaque eos. Suscipit eum eius praesentium
 Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidunt cumque iste quod et non quisquam. Maiores veritatis quia est aut est repellendus officia dignissimos libero. Nam est atque et. Rerum deleniti labore totam illum autem quis explicabo. Praesentium accusantium dolorem libero sint eum debitis ducimus recusandae.''',
       difficulty: randomDifficulty(),
       category: '3',
-      created: DateTime(2022, 4, 2),
+      created: DateTime.now().subtract(const Duration(days: 4)),
     ),
     LearningModel(
       uid: '',
@@ -24,7 +24,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '2',
-      created: DateTime(2022, 4, 4),
+      created: DateTime.now().subtract(const Duration(days: 5)),
     ),
     LearningModel(
       uid: '',
@@ -32,7 +32,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '1',
-      created: DateTime(2022, 4, 5),
+      created: DateTime.now().subtract(const Duration(days: 7)),
     ),
     LearningModel(
       uid: '',
@@ -40,7 +40,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '2',
-      created: DateTime(2022, 3, 5),
+      created: DateTime.now().subtract(const Duration(days: 9)),
     ),
     LearningModel(
       uid: '',
@@ -48,7 +48,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '3',
-      created: DateTime(2022, 3, 27),
+      created: DateTime.now().subtract(const Duration(days: 12)),
     ),
     LearningModel(
       uid: '',
@@ -56,7 +56,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '4',
-      created: DateTime(2022, 3, 29),
+      created: DateTime.now().subtract(const Duration(days: 15)),
     ),
     LearningModel(
       uid: '',
@@ -64,7 +64,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '4',
-      created: DateTime(2022, 3, 14),
+      created: DateTime.now().subtract(const Duration(days: 16)),
     ),
     LearningModel(
       uid: '',
@@ -72,7 +72,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '4',
-      created: DateTime(2022, 3, 11),
+      created: DateTime.now().subtract(const Duration(days: 20)),
     ),
     LearningModel(
       uid: '',
@@ -80,15 +80,15 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       description: 'I quite appreciate that',
       difficulty: randomDifficulty(),
       category: '4',
-      created: DateTime(2022, 3, 30),
+      created: DateTime.now().subtract(const Duration(days: 21)),
     ),
     LearningModel(
       uid: '',
-      title: 'Something nice',
-      description: 'I quite appreciate that',
-      difficulty: randomDifficulty(),
+      title: 'Super difficult things',
+      description: "I want to challenge myself and learn all pokemon by heart. Gotta catch 'em all!",
+      difficulty: AppConfig.difficultyMaximum,
       category: '4',
-      created: DateTime(2022, 4),
+      created: DateTime.now().subtract(const Duration(days: 24)),
     ),
   ];
 

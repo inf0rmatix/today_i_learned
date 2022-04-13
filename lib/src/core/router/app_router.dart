@@ -16,7 +16,6 @@ class AppRouter {
   // TODO(1nf0rmatix): add authentication state listening to redirect.
   static void initialize() {
     _router = GoRouter(
-      initialLocation: '/goals',
       routes: [
         GoRoute(
           path: '/',
