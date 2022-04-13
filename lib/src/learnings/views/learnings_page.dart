@@ -52,6 +52,7 @@ class _LearningsView extends StatelessWidget {
                     return LearningsListElement(
                       learning: learning,
                       category: category,
+                      onTap: () => context.goNamed(AppRoutes.learningDetails, params: {'uid': learning.uid}),
                     );
                   },
                   separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.M),

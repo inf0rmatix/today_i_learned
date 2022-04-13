@@ -45,7 +45,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                         CustomBottomNavigationBarElement(
                           icon: Icons.list_rounded,
                           title: 'Learnings',
-                          onTap: () => AppRouter.router.goNamed(AppRoutes.allLearnings),
+                          onTap: () => AppRouter.router.goNamed(AppRoutes.learnings),
                         ),
                         const SizedBox(width: AppSpacing.XL),
                         CustomBottomNavigationBarElement(

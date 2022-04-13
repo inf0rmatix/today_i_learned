@@ -18,6 +18,7 @@ Aut nihil accusamus deleniti corrupti quae harum quis quaerat. Quidem est incidu
       difficulty: randomDifficulty(),
       category: '3',
       created: DateTime.now().subtract(const Duration(days: 4)),
+      updated: DateTime.now().subtract(const Duration(days: 3)),
     ),
     LearningModel(
       uid: '',
