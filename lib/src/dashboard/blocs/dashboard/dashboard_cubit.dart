@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/learnings/learnings.dart';
 
 part 'dashboard_cubit.freezed.dart';
 part 'dashboard_state.dart';

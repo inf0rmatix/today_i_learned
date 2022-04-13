@@ -1,10 +1,9 @@
 import 'package:go_router/go_router.dart';
-import 'package:today_i_learned/src/all_learnings/views/all_learnings_page.dart';
 import 'package:today_i_learned/src/core/router/app_routes.dart';
-import 'package:today_i_learned/src/create_learning/create_learning.dart';
 import 'package:today_i_learned/src/dashboard/dashboard.dart';
 import 'package:today_i_learned/src/goals/views/create_goal_page.dart';
 import 'package:today_i_learned/src/goals/views/goals_page.dart';
+import 'package:today_i_learned/src/learnings/learnings.dart';
 
 class AppRouter {
   AppRouter._();
@@ -32,7 +31,7 @@ class AppRouter {
         GoRoute(
           path: '/all-learnings',
           name: AppRoutes.allLearnings,
-          builder: (_, __) => const AllLearningsPage(),
+          builder: (_, __) => const LearningsPage(),
         ),
         GoRoute(
           path: '/goals',

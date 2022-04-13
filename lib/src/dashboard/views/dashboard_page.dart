@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:today_i_learned/src/core/core.dart';
 import 'package:today_i_learned/src/dashboard/dashboard.dart';
+import 'package:today_i_learned/src/learnings/learnings.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:today_i_learned/src/all_learnings/blocs/learnings/learnings_cubit.dart';
-import 'package:today_i_learned/src/all_learnings/widgets/widgets.dart';
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/learnings/blocs/blocs.dart';
+import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
+import 'package:today_i_learned/src/learnings/widgets/widgets.dart';
 
-class AllLearningsPage extends StatelessWidget {
-  const AllLearningsPage({Key? key}) : super(key: key);
+class LearningsPage extends StatelessWidget {
+  const LearningsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +15,14 @@ class AllLearningsPage extends StatelessWidget {
         learningRepository: context.read<LearningRepository>(),
         categoriesCubit: context.read<CategoriesCubit>(),
       ),
-      child: const _AllLearningsView(),
+      child: const _LearningsView(),
     );
   }
 }
 
 // ignore: prefer-single-widget-per-file
-class _AllLearningsView extends StatelessWidget {
-  const _AllLearningsView({Key? key}) : super(key: key);
+class _LearningsView extends StatelessWidget {
+  const _LearningsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

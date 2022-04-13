@@ -1,5 +1,6 @@
-import 'package:today_i_learned/src/core/core.dart';
 import 'package:today_i_learned/src/core/repositories/memory_repository.dart';
+import 'package:today_i_learned/src/learnings/models/learning/learning_model.dart';
+import 'package:today_i_learned/src/learnings/repositories/learning/learning_repository.dart';
 
 class LearningRepositoryMemory extends MemoryRepository<LearningModel> implements LearningRepository {
   LearningRepositoryMemory()

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/learnings/learnings.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class LearningsMock {

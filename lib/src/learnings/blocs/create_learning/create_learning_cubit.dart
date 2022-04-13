@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/learnings/models/models.dart';
+import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
 
 part 'create_learning_cubit.freezed.dart';
 part 'create_learning_state.dart';

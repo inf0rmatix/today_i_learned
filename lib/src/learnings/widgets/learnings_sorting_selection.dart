@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/all_learnings/blocs/learnings/learnings_cubit.dart';
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/learnings/blocs/blocs.dart';
 
 class LearningsSortingSelection extends StatelessWidget {
   final LearningOrderBy value;

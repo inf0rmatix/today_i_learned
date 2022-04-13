@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/learnings/learnings.dart';
 
 class TodayILearnedApp extends StatelessWidget {
   final LearningRepository learningRepository;
