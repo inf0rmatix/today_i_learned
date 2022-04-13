@@ -1,4 +1,6 @@
 abstract class AppRoutes {
+  static const String startup = 'startup';
+
   static const String dashboard = 'dashboard';
 
   static const String learnings = 'learnings';
