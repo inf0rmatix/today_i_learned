@@ -7,6 +7,7 @@ part 'goal_model.g.dart';
 class GoalModel with _$GoalModel {
   static const double noDifficultyRequirementValue = -1;
 
+  // ignore: no-magic-number
   bool get isComplete => learnings >= requiredLearnings && requiredLearnings > 0;
 
   factory GoalModel({
