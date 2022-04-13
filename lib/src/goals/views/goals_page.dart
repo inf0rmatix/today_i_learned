@@ -50,7 +50,7 @@ class _GoalsView extends StatelessWidget {
               final isBetweenCompleteAndOnGoing = !goal.isComplete && nextGoal != null && nextGoal.isComplete;
 
               if (isBetweenCompleteAndOnGoing) {
-                return const LabeledDivider(label: '🎉  COMPLETED GOALS  🎊');
+                return const LabeledDivider(label: '🎉 COMPLETED GOALS 🎊');
               }
 
               return const SizedBox(height: AppSpacing.M);

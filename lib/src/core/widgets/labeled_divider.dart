@@ -26,7 +26,11 @@ class LabeledDivider extends StatelessWidget {
               ),
               child: Text(
                 label,
-                style: const TextStyle(height: 1.125),
+                style: const TextStyle(
+                  height: 1.125,
+                  letterSpacing: 1.5,
+                  wordSpacing: 5,
+                ),
               ),
             ),
           ),

@@ -109,6 +109,7 @@ class _CreateGoalView extends StatelessWidget {
                     );
                   },
                 ),
+                const LabeledDivider(label: 'PREVIEW'),
                 BlocBuilder<CreateGoalCubit, CreateGoalState>(
                   builder: (context, state) {
                     final now = DateTime.now();
