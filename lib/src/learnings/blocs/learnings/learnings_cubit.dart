@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/categories/categories.dart';
 import 'package:today_i_learned/src/learnings/models/models.dart';
 import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
 

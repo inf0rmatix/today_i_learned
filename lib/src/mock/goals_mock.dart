@@ -1,6 +1,6 @@
 // ignore_for_file: no-magic-number
 
-import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/goals/goals.dart';
 
 // ignore: avoid_classes_with_only_static_members

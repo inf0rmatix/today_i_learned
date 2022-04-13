@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/core/config/app_colors.dart';
+import 'package:today_i_learned/src/app/config/app_colors.dart';
 
 class CustomDropdownButtonFormField<T> extends DropdownButtonFormField<T> {
   CustomDropdownButtonFormField({

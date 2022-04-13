@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/app/app.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   static const double _actionButtonBottomSpacing = 120;

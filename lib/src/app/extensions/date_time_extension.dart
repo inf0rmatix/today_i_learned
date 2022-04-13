@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/core/extensions/translation_extension.dart';
-import 'package:today_i_learned/src/core/translations/translations.dart';
+import 'package:today_i_learned/src/app/app.dart';
 
 extension DateTimeExtension on DateTime {
   String formatWeekdayDate(Locale locale) {

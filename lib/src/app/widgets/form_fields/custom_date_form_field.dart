@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/core/extensions/extensions.dart';
-import 'package:today_i_learned/src/core/widgets/form_fields/custom_text_form_field.dart';
+import 'package:today_i_learned/src/app/extensions/extensions.dart';
+import 'package:today_i_learned/src/app/widgets/form_fields/custom_text_form_field.dart';
 
 class CustomDateFormField extends StatelessWidget {
   final String label;

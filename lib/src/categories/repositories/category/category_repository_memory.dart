@@ -1,6 +1,6 @@
-import 'package:today_i_learned/src/core/models/category/category_model.dart';
-import 'package:today_i_learned/src/core/repositories/category/category.dart';
-import 'package:today_i_learned/src/core/repositories/memory_repository.dart';
+import 'package:today_i_learned/src/app/app.dart';
+import 'package:today_i_learned/src/categories/models/models.dart';
+import 'package:today_i_learned/src/categories/repositories/repositories.dart';
 
 class CategoryRepositoryMemory extends MemoryRepository<CategoryModel> implements CategoryRepository {
   CategoryRepositoryMemory()

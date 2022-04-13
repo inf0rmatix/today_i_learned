@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:today_i_learned/src/core/repositories/crud_repository.dart';
+import 'package:today_i_learned/src/app/repositories/crud_repository.dart';
 
 class MemoryRepository<T> implements CrudRepository<T> {
   int _idCounter = 0;

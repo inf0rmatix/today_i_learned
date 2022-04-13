@@ -1,4 +1,4 @@
-import 'package:today_i_learned/src/core/repositories/memory_repository.dart';
+import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/learnings/models/learning/learning_model.dart';
 import 'package:today_i_learned/src/learnings/repositories/learning/learning_repository.dart';
 

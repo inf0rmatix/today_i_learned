@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/core/core.dart';
+import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/goals/models/models.dart';
 
 class GoalListElement extends StatelessWidget {

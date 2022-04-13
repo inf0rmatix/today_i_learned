@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:today_i_learned/src/core/config/config.dart';
+import 'package:today_i_learned/src/app/config/config.dart';
 
 class CustomText extends Text {
   const CustomText(
