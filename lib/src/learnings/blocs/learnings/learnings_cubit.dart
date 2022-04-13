@@ -24,6 +24,13 @@ class LearningsCubit extends Cubit<LearningsState> {
     _initialize();
   }
 
+  @override
+  Future<void> close() async {
+    await _changesStreamSubscription.cancel();
+
+    return super.close();
+  }
+
   Future _initialize() async {
     emit(state.copyWith(isLoading: true));
 

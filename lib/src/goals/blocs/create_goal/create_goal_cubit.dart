@@ -48,8 +48,6 @@ class CreateGoalCubit extends Cubit<CreateGoalState> {
   }
 
   Future<void> save() async {
-    // TODO(1nf0rmatix): add validation.
-
     emit(state.copyWith(isLoading: true));
 
     GoalModel? goal = state.goal;

@@ -12,7 +12,7 @@ class StartupPage extends StatelessWidget {
         title: const Text('Starting...'),
       ),
       body: FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 2)),
+        future: Future.delayed(const Duration(seconds: 1)),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             WidgetsBinding.instance?.addPostFrameCallback((_) => context.goNamed(AppRoutes.dashboard));

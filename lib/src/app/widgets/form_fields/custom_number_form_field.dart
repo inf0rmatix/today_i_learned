@@ -7,6 +7,7 @@ class CustomNumberFormField extends TextFormField {
     required String label,
     void Function(num)? onChanged,
     num? initialValue,
+    String? Function(String? value)? validator,
   }) : super(
           key: key,
           decoration: InputDecoration(
@@ -17,6 +18,9 @@ class CustomNumberFormField extends TextFormField {
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp('[1-9][0-9]*')),
           ],
+          keyboardType: TextInputType.number,
+          validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         );
 
   static void _onChanged(String? text, void Function(num)? onChanged) {

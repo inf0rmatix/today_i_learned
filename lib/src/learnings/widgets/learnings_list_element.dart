@@ -36,14 +36,15 @@ class LearningsListElement extends StatelessWidget {
                 '${category == null ? '' : '${category!.name}\n'}${learning.created.formatWeekdayDate(context.locale)} - Difficulty-Level: ${learning.difficulty}',
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: AppSpacing.M,
-                right: AppSpacing.M,
-                bottom: AppSpacing.M,
+            if (learning.description != null)
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppSpacing.M,
+                  right: AppSpacing.M,
+                  bottom: AppSpacing.M,
+                ),
+                child: Text(learning.description!.truncate(AppConfig.learningDescriptionPreviewLength)),
               ),
-              child: Text(learning.description.truncate(AppConfig.learningDescriptionPreviewLength)),
-            ),
           ],
         ),
       ),

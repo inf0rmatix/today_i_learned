@@ -8,8 +8,8 @@ class LearningModel with _$LearningModel {
   factory LearningModel({
     required String uid,
     required String title,
-    required String description,
     required double difficulty,
+    String? description,
     String? category,
     required DateTime created,
     DateTime? updated,

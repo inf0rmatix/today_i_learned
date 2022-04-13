@@ -7,6 +7,7 @@ class CustomDateFormField extends StatelessWidget {
   final String label;
   final DateTime? initialValue;
   final void Function(DateTime date)? onChanged;
+  final String? Function(String? value)? validator;
 
   final GlobalKey<FormFieldState> _formFieldKey = GlobalKey();
 
@@ -15,6 +16,7 @@ class CustomDateFormField extends StatelessWidget {
     required this.label,
     this.initialValue,
     this.onChanged,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class CustomDateFormField extends StatelessWidget {
           key: _formFieldKey,
           label: label,
           initialValue: initialValue?.formatFullDate(context.locale),
+          validator: validator,
         ),
       ),
     );

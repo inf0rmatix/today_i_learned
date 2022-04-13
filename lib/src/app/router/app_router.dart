@@ -17,6 +17,7 @@ class AppRouter {
   // ignore: long-method
   static void initialize() {
     _router = GoRouter(
+      initialLocation: '/learnings/create',
       routes: [
         GoRoute(
           path: '/',

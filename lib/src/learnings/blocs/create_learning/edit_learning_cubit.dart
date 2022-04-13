@@ -47,25 +47,32 @@ class EditLearningCubit extends Cubit<EditLearningState> {
 
     LearningModel newLearning;
 
-    newLearning = learning == null
-        ? await learningRepository.create(
-            LearningModel(
-              uid: '',
-              title: state.title,
-              description: state.description,
-              difficulty: state.difficulty,
-              category: state.category?.uid,
-              created: DateTime.now(),
-            ),
-          )
-        : await learningRepository.update(
-            learning.copyWith(
-              title: state.title,
-              description: state.description,
-              category: state.category?.uid,
-              updated: DateTime.now(),
-            ),
-          );
+    if (learning == null) {
+      newLearning = await learningRepository.create(
+        LearningModel(
+          uid: '',
+          title: state.title,
+          description: state.description,
+          difficulty: state.difficulty,
+          category: state.category?.uid,
+          created: DateTime.now(),
+        ),
+      );
+    } else {
+      newLearning = learning.copyWith(
+        title: state.title,
+        description: state.description,
+        category: state.category?.uid,
+      );
+
+      newLearning = newLearning == state.learning
+          ? newLearning
+          : await learningRepository.update(
+              newLearning.copyWith(
+                updated: DateTime.now(),
+              ),
+            );
+    }
 
     emit(
       state.copyWith(

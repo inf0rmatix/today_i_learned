@@ -21,6 +21,7 @@ class CustomTextFormField extends TextFormField {
           minLines: minLines,
           maxLines: minLines != null ? _multilineMaxLines : null,
           validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         );
 
   factory CustomTextFormField.multiline({
