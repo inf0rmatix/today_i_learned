@@ -1,8 +1,8 @@
-part of 'create_learning_cubit.dart';
+part of 'edit_learning_cubit.dart';
 
 @freezed
-class CreateLearningState with _$CreateLearningState {
-  const factory CreateLearningState({
+class EditLearningState with _$EditLearningState {
+  const factory EditLearningState({
     // TODO(1nf0rmatx): use the model for learning
     @Default('') String title,
     @Default('') String description,
@@ -11,5 +11,5 @@ class CreateLearningState with _$CreateLearningState {
     CategoryModel? category,
     @Default(false) bool isLoading,
     LearningModel? learning,
-  }) = _CreateLearningState;
+  }) = _EditLearningState;
 }

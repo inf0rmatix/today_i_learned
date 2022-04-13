@@ -1,21 +1,23 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:today_i_learned/src/categories/categories.dart';
 import 'package:today_i_learned/src/learnings/models/models.dart';
 import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
 
-part 'create_learning_cubit.freezed.dart';
-part 'create_learning_state.dart';
+part 'edit_learning_cubit.freezed.dart';
+part 'edit_learning_state.dart';
 
-class CreateLearningCubit extends Cubit<CreateLearningState> {
+class EditLearningCubit extends Cubit<EditLearningState> {
   final LearningRepository learningRepository;
   final CategoriesCubit categoriesCubit;
 
-  CreateLearningCubit({
+  EditLearningCubit({
+    String? learningUid,
     required this.learningRepository,
     required this.categoriesCubit,
-  }) : super(const CreateLearningState()) {
-    _initialize();
+  }) : super(const EditLearningState()) {
+    _initialize(learningUid);
   }
 
   void changeTitle(String value) {
@@ -73,13 +75,32 @@ class CreateLearningCubit extends Cubit<CreateLearningState> {
     );
   }
 
-  Future<void> _initialize() async {
+  Future<void> _initialize(String? learningUid) async {
     emit(state.copyWith(isLoading: true));
 
     if (categoriesCubit.state.categories.isEmpty) {
       await categoriesCubit.fetchCategories();
     }
 
-    emit(state.copyWith(isLoading: false));
+    LearningModel? learning;
+
+    if (learningUid != null) {
+      learning = await learningRepository.findOne(learningUid);
+    }
+
+    final CategoryModel? category = learning != null && learning.category != null
+        ? categoriesCubit.state.categories.firstWhereOrNull((element) => element.uid == learning!.category)
+        : null;
+
+    emit(
+      state.copyWith(
+        isLoading: false,
+        learning: learning,
+        title: learning?.title ?? state.title,
+        description: learning?.description ?? state.description,
+        difficulty: learning?.difficulty ?? state.difficulty,
+        category: category,
+      ),
+    );
   }
 }

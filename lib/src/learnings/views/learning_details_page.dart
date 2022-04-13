@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/categories/repositories/category/category_repository.dart';
 import 'package:today_i_learned/src/learnings/learnings.dart';
@@ -44,9 +45,10 @@ class _LearningDetailsView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO(1nf0rmatix): implement editing learings (refactor create learning page)
-        },
+        onPressed: () => context.goNamed(
+          AppRoutes.editLearning,
+          params: {'learningUid': context.read<LearningDetailsCubit>().learningUid},
+        ),
         child: const Icon(Icons.edit_rounded),
       ),
       body: Stack(

@@ -28,14 +28,23 @@ class AppRouter {
           builder: (_, __) => const LearningsPage(),
           routes: [
             GoRoute(
-              path: 'details/:uid',
+              path: 'details/:learningUid',
               name: AppRoutes.learningDetails,
-              builder: (_, routerState) => LearningDetailsPage(uid: routerState.params['uid'].toString()),
+              builder: (_, routerState) => LearningDetailsPage(
+                uid: routerState.params['learningUid'].toString(),
+              ),
             ),
             GoRoute(
               path: 'create',
               name: AppRoutes.createLearning,
-              builder: (_, __) => const CreateLearningPage(),
+              builder: (_, __) => const EditLearningPage(),
+            ),
+            GoRoute(
+              path: 'edit/:learningUid',
+              name: AppRoutes.editLearning,
+              builder: (_, routerState) => EditLearningPage(
+                learningUid: routerState.params['learningUid'].toString(),
+              ),
             ),
           ],
         ),

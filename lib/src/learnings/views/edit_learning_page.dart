@@ -3,15 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/categories/categories.dart';
 import 'package:today_i_learned/src/learnings/blocs/blocs.dart';
+import 'package:today_i_learned/src/learnings/learnings.dart';
 import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
 
-class CreateLearningPage extends StatelessWidget {
-  const CreateLearningPage({Key? key}) : super(key: key);
+class EditLearningPage extends StatelessWidget {
+  final String? learningUid;
+
+  const EditLearningPage({
+    Key? key,
+    this.learningUid,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CreateLearningCubit(
+      create: (context) => EditLearningCubit(
+        learningUid: learningUid,
         learningRepository: context.read<LearningRepository>(),
         categoriesCubit: context.read<CategoriesCubit>(),
       ),
@@ -30,6 +37,10 @@ class _CreateLearningPageView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Today I learned'),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.save_rounded),
+        onPressed: () => _save(context),
+      ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -38,20 +49,34 @@ class _CreateLearningPageView extends StatelessWidget {
               children: [
                 const CustomText.headline1('What did you learn?'),
                 const SizedBox(height: AppSpacing.L),
-                CustomTextFormField(
-                  label: 'Title',
-                  onChanged: (title) => context.read<CreateLearningCubit>().changeTitle(title),
+                BlocBuilder<EditLearningCubit, EditLearningState>(
+                  buildWhen: (previousState, newState) => previousState.learning != newState.learning,
+                  builder: (context, state) {
+                    return CustomTextFormField(
+                      key: Key('${state.learning?.title.length.toString() ?? ''}-title'),
+                      label: 'Title',
+                      initialValue: state.title,
+                      onChanged: (title) => context.read<EditLearningCubit>().changeTitle(title),
+                    );
+                  },
                 ),
                 const SizedBox(height: AppSpacing.L),
-                CustomTextFormField.multiline(
-                  label: 'Description',
-                  onChanged: (description) => context.read<CreateLearningCubit>().changeDescription(description),
+                BlocBuilder<EditLearningCubit, EditLearningState>(
+                  buildWhen: (previousState, newState) => previousState.learning != newState.learning,
+                  builder: (context, state) {
+                    return CustomTextFormField.multiline(
+                      key: Key('${state.learning?.description.length.toString() ?? ''}-description'),
+                      label: 'Description',
+                      initialValue: state.description,
+                      onChanged: (description) => context.read<EditLearningCubit>().changeDescription(description),
+                    );
+                  },
                 ),
                 const SizedBox(height: AppSpacing.L),
                 BlocSelector<CategoriesCubit, CategoriesState, List<CategoryModel>>(
                   selector: (state) => state.categories,
                   builder: (context, categories) {
-                    return BlocSelector<CreateLearningCubit, CreateLearningState, CategoryModel?>(
+                    return BlocSelector<EditLearningCubit, EditLearningState, CategoryModel?>(
                       selector: (state) => state.category,
                       builder: (context, selectedCategory) {
                         return CustomDropdownButtonFormField<CategoryModel>(
@@ -63,7 +88,7 @@ class _CreateLearningPageView extends StatelessWidget {
                               child: Text(categories[index].name),
                             ),
                           ),
-                          onChanged: (category) => context.read<CreateLearningCubit>().changeCategory(category),
+                          onChanged: (category) => context.read<EditLearningCubit>().changeCategory(category),
                           label: 'Category',
                         );
                       },
@@ -72,7 +97,7 @@ class _CreateLearningPageView extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpacing.L),
                 const CustomText('How hard was it? 0 - super easy, 10 - super hard'),
-                BlocSelector<CreateLearningCubit, CreateLearningState, double>(
+                BlocSelector<EditLearningCubit, EditLearningState, double>(
                   selector: (state) => state.difficulty,
                   builder: (context, difficulty) => CustomSlider(
                     // ignore: avoid_redundant_argument_values
@@ -82,19 +107,14 @@ class _CreateLearningPageView extends StatelessWidget {
                     value: difficulty,
                     // ignore: no-magic-number
                     label: difficulty.toStringAsFixed(1),
-                    onChanged: (value) => context.read<CreateLearningCubit>().changeDifficulty(value),
+                    onChanged: (value) => context.read<EditLearningCubit>().changeDifficulty(value),
                   ),
                 ),
-                const SizedBox(height: AppSpacing.L),
-                ElevatedButton.icon(
-                  icon: const Icon(Icons.save_rounded),
-                  label: const Text('Save'),
-                  onPressed: () => context.read<CreateLearningCubit>().save(),
-                ),
+                const SizedBox(height: AppSpacing.XXXL),
               ],
             ),
           ),
-          BlocSelector<CreateLearningCubit, CreateLearningState, bool>(
+          BlocSelector<EditLearningCubit, EditLearningState, bool>(
             selector: (state) => state.isLoading,
             builder: (context, isLoading) {
               if (isLoading) {
@@ -114,5 +134,10 @@ class _CreateLearningPageView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _save(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    context.read<EditLearningCubit>().save();
   }
 }
