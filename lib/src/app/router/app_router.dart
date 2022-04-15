@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:today_i_learned/src/app/router/app_routes.dart';
+import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/dashboard/dashboard.dart';
 import 'package:today_i_learned/src/goals/views/create_goal_page.dart';
 import 'package:today_i_learned/src/goals/views/goals_page.dart';
@@ -68,6 +68,10 @@ class AppRouter {
           ],
         ),
       ],
+      navigatorBuilder: (context, routerState, child) => CustomBottomNavigationBar(
+        currentRoute: routerState.location,
+        child: child,
+      ),
     );
   }
 }

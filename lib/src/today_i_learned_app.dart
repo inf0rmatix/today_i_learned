@@ -42,10 +42,6 @@ class TodayILearnedApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          builder: (_, child) => CustomBottomNavigationBar(
-            theme: theme,
-            child: child,
-          ),
         ),
       ),
     );
