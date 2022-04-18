@@ -32,7 +32,7 @@ Future<void> mainInMemory() async {
       supportedLocales: const [
         Locale('en'),
       ],
-      path: 'assets/translations/',
+      path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       child: TodayILearnedApp(
         learningRepository: learningRepository,
