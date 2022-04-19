@@ -16,6 +16,8 @@ class GoalModel with _$GoalModel {
     required DateTime created,
     DateTime? completed,
     required DateTime deadline,
+    @Default(false) bool achieved,
+    @Default(false) bool failed,
     // ignore: no-magic-number
     @Default(0) int learnings,
     required int requiredLearnings,

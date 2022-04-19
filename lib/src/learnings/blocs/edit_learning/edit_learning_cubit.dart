@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:today_i_learned/src/categories/categories.dart';
+import 'package:today_i_learned/src/goals/blocs/goals/goals_cubit.dart';
 import 'package:today_i_learned/src/learnings/models/models.dart';
 import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
 
@@ -10,12 +11,16 @@ part 'edit_learning_state.dart';
 // TODO(1nf0rmatix): implement auto-saving
 class EditLearningCubit extends Cubit<EditLearningState> {
   final LearningRepository learningRepository;
+
   final CategoriesCubit categoriesCubit;
+
+  final GoalsCubit goalsCubit;
 
   EditLearningCubit({
     String? learningUid,
     required this.learningRepository,
     required this.categoriesCubit,
+    required this.goalsCubit,
   }) : super(const EditLearningState()) {
     _initialize(learningUid);
   }
@@ -58,6 +63,8 @@ class EditLearningCubit extends Cubit<EditLearningState> {
           created: DateTime.now(),
         ),
       );
+
+      goalsCubit.onLearningCreated(newLearning);
     } else {
       newLearning = learning.copyWith(
         title: state.title,

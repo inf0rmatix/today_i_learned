@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/categories/categories.dart';
+import 'package:today_i_learned/src/goals/goals.dart';
 import 'package:today_i_learned/src/learnings/learnings.dart';
 
 class EditLearningPage extends StatelessWidget {
@@ -20,6 +21,7 @@ class EditLearningPage extends StatelessWidget {
         learningUid: learningUid,
         learningRepository: context.read<LearningRepository>(),
         categoriesCubit: context.read<CategoriesCubit>(),
+        goalsCubit: context.read<GoalsCubit>(),
       ),
       child: _CreateLearningPageView(),
     );

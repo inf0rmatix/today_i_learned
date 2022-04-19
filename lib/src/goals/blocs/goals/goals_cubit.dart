@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/goals/models/models.dart';
 import 'package:today_i_learned/src/goals/repositories/repositories.dart';
+import 'package:today_i_learned/src/learnings/models/learning/learning_model.dart';
 
 part 'goals_cubit.freezed.dart';
 part 'goals_state.dart';
@@ -64,5 +65,36 @@ class GoalsCubit extends Cubit<GoalsState> {
         goals: goals,
       ),
     );
+  }
+
+  Future<GoalModel> increaseGoalLearnings(GoalModel goal) {
+    final learnings = goal.learnings + 1;
+
+    final updatedGoal = goal.copyWith(
+      learnings: learnings,
+      achieved: learnings >= goal.requiredLearnings,
+    );
+
+    return goalRepository.update(updatedGoal);
+  }
+
+  Future<void> onLearningCreated(LearningModel learning) async {
+    // TODO(1nf0rmatix): implement query to reduce unnecessary reads
+    final goals = await goalRepository.findAll();
+
+    final contributedGoals = goals.where(
+      (goal) {
+        final isNotComplete = !goal.isComplete;
+        final isWithinDeadline = goal.deadline.isAfter(learning.created);
+        final isRequiredDifficultyMet = goal.requiredDifficulty == GoalModel.noDifficultyRequirementValue ||
+            goal.requiredDifficulty >= learning.difficulty;
+
+        return isNotComplete && isWithinDeadline && isRequiredDifficultyMet;
+      },
+    );
+
+    for (final goal in contributedGoals) {
+      increaseGoalLearnings(goal);
+    }
   }
 }
