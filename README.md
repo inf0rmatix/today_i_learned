@@ -25,6 +25,9 @@ The app helps you understand, that you are indeed learning a lot, every day.
 
 ## Code Generation
 
+This project uses build_runner to generate code. Run this command:
+`flutter pub run build_runner build --delete-conflicting-outputs`
+
 ### Translations
 
 `flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/src/core/translations -o locale_keys.dart`
