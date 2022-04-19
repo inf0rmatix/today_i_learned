@@ -15,6 +15,7 @@ class GoalsMock {
         completed: DateTime.now(),
         learnings: 5,
         requiredLearnings: 5,
+        isAchieved: true,
       ),
     );
 
@@ -24,7 +25,7 @@ class GoalsMock {
         title: 'Learn ten things',
         created: DateTime.now().subtract(const Duration(days: 4)),
         deadline: DateTime.now().add(const Duration(days: 30)),
-        learnings: 7,
+        learnings: 9,
         requiredLearnings: 10,
       ),
     );

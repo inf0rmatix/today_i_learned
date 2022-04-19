@@ -7,17 +7,14 @@ part 'goal_model.g.dart';
 class GoalModel with _$GoalModel {
   static const double noDifficultyRequirementValue = -1;
 
-  // ignore: no-magic-number
-  bool get isComplete => learnings >= requiredLearnings && requiredLearnings > 0;
-
   factory GoalModel({
     required String uid,
     required String title,
     required DateTime created,
     DateTime? completed,
     required DateTime deadline,
-    @Default(false) bool achieved,
-    @Default(false) bool failed,
+    @Default(false) bool isAchieved,
+    @Default(false) bool isFailed,
     // ignore: no-magic-number
     @Default(0) int learnings,
     required int requiredLearnings,

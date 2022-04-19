@@ -37,7 +37,7 @@ class _GoalsView extends StatelessWidget {
         builder: (context, goals) {
           goals.sort((a, b) => a.deadline.compareTo(b.deadline));
           // ignore: no-magic-number
-          goals.sort((a, b) => a.isComplete && !b.isComplete ? 1 : -1);
+          goals.sort((a, b) => a.isAchieved && !b.isAchieved ? 1 : -1);
 
           return ListView.separated(
             padding: const EdgeInsets.all(AppSpacing.M),
@@ -48,7 +48,7 @@ class _GoalsView extends StatelessWidget {
               final nextIndex = index + 1;
               final nextGoal = nextIndex < goals.length ? goals[nextIndex] : null;
 
-              final isBetweenCompleteAndOnGoing = !goal.isComplete && nextGoal != null && nextGoal.isComplete;
+              final isBetweenCompleteAndOnGoing = !goal.isAchieved && nextGoal != null && nextGoal.isAchieved;
 
               if (isBetweenCompleteAndOnGoing) {
                 return const LabeledDivider(label: '🎉 COMPLETED GOALS 🎊');

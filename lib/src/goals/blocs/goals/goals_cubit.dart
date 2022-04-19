@@ -69,10 +69,12 @@ class GoalsCubit extends Cubit<GoalsState> {
 
   Future<GoalModel> increaseGoalLearnings(GoalModel goal) {
     final learnings = goal.learnings + 1;
+    final isAchieved = learnings >= goal.requiredLearnings;
 
     final updatedGoal = goal.copyWith(
       learnings: learnings,
-      achieved: learnings >= goal.requiredLearnings,
+      isAchieved: isAchieved,
+      completed: isAchieved ? DateTime.now() : null,
     );
 
     return goalRepository.update(updatedGoal);
@@ -84,10 +86,10 @@ class GoalsCubit extends Cubit<GoalsState> {
 
     final contributedGoals = goals.where(
       (goal) {
-        final isNotComplete = !goal.isComplete;
+        final isNotComplete = !goal.isAchieved;
         final isWithinDeadline = goal.deadline.isAfter(learning.created);
         final isRequiredDifficultyMet = goal.requiredDifficulty == GoalModel.noDifficultyRequirementValue ||
-            goal.requiredDifficulty >= learning.difficulty;
+            learning.difficulty >= goal.requiredDifficulty;
 
         return isNotComplete && isWithinDeadline && isRequiredDifficultyMet;
       },

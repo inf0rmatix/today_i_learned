@@ -23,17 +23,17 @@ class GoalListElement extends StatelessWidget {
           children: [
             ListTile(
               leading: Icon(
-                goal.isComplete ? Icons.emoji_events_rounded : Icons.sports_score_rounded,
+                goal.isAchieved ? Icons.emoji_events_rounded : Icons.sports_score_rounded,
                 size: AppIconSize.L,
               ),
               title: CustomText.headline1(goal.title),
             ),
-            if (goal.isComplete && goal.completed != null)
+            if (goal.isAchieved && goal.completed != null)
               ListTile(
                 leading: const Icon(Icons.event_available_rounded),
                 title: Text(goal.completed!.formatFullDate(context.locale)),
               ),
-            if (!goal.isComplete)
+            if (!goal.isAchieved)
               ListTile(
                 leading: const Icon(Icons.event_rounded),
                 title: Text(goal.deadline.formatWeekdayDate(context.locale)),
@@ -47,7 +47,7 @@ class GoalListElement extends StatelessWidget {
                 leading: const Icon(Icons.construction_rounded),
                 title: Text('${goal.requiredDifficulty} minimum difficulty'),
               ),
-            if (!goal.isComplete)
+            if (!goal.isAchieved)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
