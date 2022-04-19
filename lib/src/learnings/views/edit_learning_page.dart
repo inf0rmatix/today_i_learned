@@ -82,27 +82,38 @@ class _CreateLearningPageView extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: AppSpacing.L),
-                  BlocSelector<CategoriesCubit, CategoriesState, List<CategoryModel>>(
-                    selector: (state) => state.categories,
-                    builder: (context, categories) {
-                      return BlocSelector<EditLearningCubit, EditLearningState, CategoryModel?>(
-                        selector: (state) => state.category,
-                        builder: (context, selectedCategory) {
-                          return CustomDropdownButtonFormField<CategoryModel>(
-                            value: selectedCategory,
-                            items: List.generate(
-                              categories.length,
-                              (index) => DropdownMenuItem(
-                                value: categories[index],
-                                child: Text(categories[index].name),
-                              ),
-                            ),
-                            onChanged: (category) => context.read<EditLearningCubit>().changeCategory(category),
-                            label: 'Category (optional)',
-                          );
-                        },
-                      );
-                    },
+                  Row(
+                    children: [
+                      Expanded(
+                        child: BlocSelector<CategoriesCubit, CategoriesState, List<CategoryModel>>(
+                          selector: (state) => state.categories,
+                          builder: (context, categories) {
+                            return BlocSelector<EditLearningCubit, EditLearningState, CategoryModel?>(
+                              selector: (state) => state.category,
+                              builder: (context, selectedCategory) {
+                                return CustomDropdownButtonFormField<CategoryModel>(
+                                  value: selectedCategory,
+                                  items: List.generate(
+                                    categories.length,
+                                    (index) => DropdownMenuItem(
+                                      value: categories[index],
+                                      child: Text(categories[index].name),
+                                    ),
+                                  ),
+                                  onChanged: (category) => context.read<EditLearningCubit>().changeCategory(category),
+                                  label: 'Category (optional)',
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: AppSpacing.M),
+                      IconButton(
+                        onPressed: () => _addCategory(context),
+                        icon: const Icon(Icons.add_rounded),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: AppSpacing.L),
                   const CustomText('How hard was it? 0 - super easy, 10 - super hard'),
@@ -154,5 +165,12 @@ class _CreateLearningPageView extends StatelessWidget {
 
       await context.read<EditLearningCubit>().save();
     }
+  }
+
+  void _addCategory(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const CreateCategoryDialog(),
+    );
   }
 }
