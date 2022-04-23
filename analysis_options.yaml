@@ -61,7 +61,8 @@ dart_code_metrics:
     - avoid-unnecessary-setstate
     - avoid-wrapping-in-padding
     - prefer-extracting-callbacks
-    - prefer-single-widget-per-file
+    - prefer-single-widget-per-file:
+        ignore-private-widgets: true
     - avoid-global-state
     - technical-debt:
         threshold: 1

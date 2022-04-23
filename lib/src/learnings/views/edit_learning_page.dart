@@ -28,7 +28,6 @@ class EditLearningPage extends StatelessWidget {
   }
 }
 
-// ignore: prefer-single-widget-per-file
 class _CreateLearningPageView extends StatelessWidget {
   final GlobalKey<FormState> _form = GlobalKey();
 
