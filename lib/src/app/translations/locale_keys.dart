@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const common_date_format_weekday_date = 'common.date_format.weekday_date';
   static const common_date_format_full_date = 'common.date_format.full_date';
   static const common_date_format = 'common.date_format';
@@ -20,5 +20,4 @@ abstract class  LocaleKeys {
   static const learning_order_by_created_descending = 'learning_order_by.created_descending';
   static const learning_order_by_created_ascending = 'learning_order_by.created_ascending';
   static const learning_order_by = 'learning_order_by';
-
 }
