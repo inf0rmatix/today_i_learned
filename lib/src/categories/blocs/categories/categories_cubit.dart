@@ -32,7 +32,14 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
     final categories = await categoryRepository.findAll();
 
-    emit(state.copyWith(isLoading: false, categories: categories));
+    categories.sort((a, b) => a.name.compareTo(b.name));
+
+    emit(
+      state.copyWith(
+        isLoading: false,
+        categories: categories,
+      ),
+    );
   }
 
   CategoryModel? findByUid(String? category) {
@@ -62,7 +69,8 @@ class CategoriesCubit extends Cubit<CategoriesState> {
           state.copyWith(
             categories: state.categories.toList()
               ..removeWhere((element) => element.uid == category.uid)
-              ..add(category),
+              ..add(category)
+              ..sort((a, b) => a.name.compareTo(b.name)),
           ),
         );
 

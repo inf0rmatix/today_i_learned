@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:today_i_learned/src/app/app.dart';
+import 'package:today_i_learned/src/categories/views/categories_page.dart';
+import 'package:today_i_learned/src/categories/views/category_page.dart';
 import 'package:today_i_learned/src/dashboard/dashboard.dart';
 import 'package:today_i_learned/src/goals/views/create_goal_page.dart';
 import 'package:today_i_learned/src/goals/views/goals_page.dart';
@@ -63,6 +65,18 @@ class AppRouter {
               path: 'create',
               name: AppRoutes.createGoal,
               builder: (_, __) => const CreateGoalPage(),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: '/categories',
+          name: AppRoutes.categories,
+          builder: (_, __) => const CategoriesPage(),
+          routes: [
+            GoRoute(
+              path: 'details/:categoryUid',
+              name: AppRoutes.categoryDetails,
+              builder: (_, routerState) => CategoryPage(categoryUid: routerState.params['categoryUid']!),
             ),
           ],
         ),
