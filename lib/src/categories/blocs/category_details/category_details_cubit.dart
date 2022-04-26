@@ -24,7 +24,7 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
 
     final category = await categoryRepository.findOne(state.categoryUid);
 
-    // TODO(1nf0rmatix): actually query for category
+    // TODO(inf0rmatix): actually query for category
     final learnings = await learningRepository.findAll();
 
     emit(

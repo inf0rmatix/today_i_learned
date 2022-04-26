@@ -9,7 +9,7 @@ part 'create_goal_state.dart';
 class CreateGoalCubit extends Cubit<CreateGoalState> {
   final GoalRepository goalRepository;
 
-  // TODO(1nf0rmatix): add autosave for valid states. DEFINITELY :) Streamchat approved
+  // TODO(inf0rmatix): add autosave for valid states. DEFINITELY :) Streamchat approved
   CreateGoalCubit({
     required this.goalRepository,
   }) : super(const CreateGoalState());

@@ -8,7 +8,7 @@ import 'package:today_i_learned/src/learnings/repositories/repositories.dart';
 part 'edit_learning_cubit.freezed.dart';
 part 'edit_learning_state.dart';
 
-// TODO(1nf0rmatix): implement auto-saving
+// TODO(inf0rmatix): implement auto-saving
 class EditLearningCubit extends Cubit<EditLearningState> {
   final LearningRepository learningRepository;
 

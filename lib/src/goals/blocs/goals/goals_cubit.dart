@@ -81,7 +81,7 @@ class GoalsCubit extends Cubit<GoalsState> {
   }
 
   Future<void> onLearningCreated(LearningModel learning) async {
-    // TODO(1nf0rmatix): implement query to reduce unnecessary reads
+    // TODO(inf0rmatix): implement query to reduce unnecessary reads
     final goals = await goalRepository.findAll();
 
     final contributedGoals = goals.where(

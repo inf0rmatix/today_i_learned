@@ -26,6 +26,7 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/firebase_options.dart"
+    - "**/locale_keys.dart"
   errors:
     invalid_annotation_target: ignore
 

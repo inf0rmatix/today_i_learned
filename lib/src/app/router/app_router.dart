@@ -15,7 +15,7 @@ class AppRouter {
 
   static late GoRouter _router;
 
-  // TODO(1nf0rmatix): add authentication state listening to redirect.
+  // TODO(inf0rmatix): add authentication state listening to redirect.
   // ignore: long-method
   static void initialize() {
     _router = GoRouter(

@@ -2,11 +2,14 @@
     "cSpell.ignoreWords": [
         "mocktail",
         "nullsafety",
+        "rmatix",
+        "rmatx",
         "setstate",
         "todos"
     ],
     "cSpell.words": [
         "autovalidate",
+        "Streamchat",
         "XXXL"
     ]
 }
