@@ -17,7 +17,8 @@ class GoalModel with _$GoalModel {
     @Default(false) bool isFailed,
     // ignore: no-magic-number
     @Default(0) int learnings,
-    required int requiredLearnings,
+    // ignore: no-magic-number
+    @Default(1) int requiredLearnings,
     @Default(GoalModel.noDifficultyRequirementValue) double requiredDifficulty,
   }) = _GoalModel;
   GoalModel._();

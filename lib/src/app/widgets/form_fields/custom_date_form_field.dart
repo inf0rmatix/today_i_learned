@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:today_i_learned/src/app/extensions/extensions.dart';
 import 'package:today_i_learned/src/app/widgets/form_fields/custom_text_form_field.dart';
 
-class CustomDateFormField extends StatelessWidget {
+class CustomDateFormField extends StatefulWidget {
   final String label;
   final DateTime? initialValue;
   final void Function(DateTime date)? onChanged;
   final String? Function(String? value)? validator;
 
-  final GlobalKey<FormFieldState> _formFieldKey = GlobalKey();
-
-  CustomDateFormField({
+  const CustomDateFormField({
     Key? key,
     required this.label,
     this.initialValue,
@@ -20,15 +18,25 @@ class CustomDateFormField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CustomDateFormField> createState() => _CustomDateFormFieldState();
+}
+
+class _CustomDateFormFieldState extends State<CustomDateFormField> {
+  final GlobalKey<FormFieldState<String>> _formFieldKey = GlobalKey();
+  DateTime? currentValue;
+
+  @override
   Widget build(BuildContext context) {
+    final DateTime value = currentValue ?? widget.initialValue ?? DateTime.now();
+
     return GestureDetector(
       onTap: () => _onTap(context),
       child: AbsorbPointer(
         child: CustomTextFormField(
           key: _formFieldKey,
-          label: label,
-          initialValue: initialValue?.formatFullDate(context.locale),
-          validator: validator,
+          label: widget.label,
+          initialValue: value.formatFullDate(context.locale),
+          validator: widget.validator,
         ),
       ),
     );
@@ -41,16 +49,19 @@ class CustomDateFormField extends StatelessWidget {
 
     final newDate = await showDatePicker(
       context: context,
-      initialDate: now,
+      initialDate: currentValue ?? widget.initialValue ?? now,
       firstDate: now,
       lastDate: now.add(const Duration(days: 4 * 365)),
     );
 
-    if (newDate == null || onChanged == null) {
+    if (newDate == null || widget.onChanged == null) {
       return;
     }
 
-    onChanged!(newDate);
+    widget.onChanged!(newDate);
+
+    currentValue = newDate;
+
     _formFieldKey.currentState?.didChange(newDate.formatFullDate(context.locale));
   }
 }

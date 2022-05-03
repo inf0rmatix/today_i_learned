@@ -10,6 +10,8 @@ abstract class AppRoutes {
 
   static const String goals = 'goals';
   static const String createGoal = 'createGoal';
+  static const String goalDetails = 'goalDetails';
+  static const String editGoal = 'editGoal';
 
   static const String categories = 'categories';
   static const String categoryDetails = 'categoryDetails';

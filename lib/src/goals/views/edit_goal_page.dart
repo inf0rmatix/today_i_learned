@@ -4,25 +4,30 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/goals/goals.dart';
 
-class CreateGoalPage extends StatelessWidget {
-  const CreateGoalPage({Key? key}) : super(key: key);
+class EditGoalPage extends StatelessWidget {
+  final String? goalUid;
+
+  const EditGoalPage({
+    Key? key,
+    this.goalUid,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CreateGoalCubit(
+      create: (context) => EditGoalCubit(
+        goalUid: goalUid,
         goalRepository: context.read<GoalRepository>(),
       ),
-      child: _CreateGoalView(),
+      child: _EditGoalView(),
     );
   }
 }
 
-// ignore: prefer-single-widget-per-file
-class _CreateGoalView extends StatelessWidget {
+class _EditGoalView extends StatelessWidget {
   final GlobalKey<FormState> _form = GlobalKey();
 
-  _CreateGoalView({Key? key}) : super(key: key);
+  _EditGoalView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,44 +50,47 @@ class _CreateGoalView extends StatelessWidget {
                   vertical: AppSpacing.XL,
                 ),
                 children: [
-                  BlocSelector<CreateGoalCubit, CreateGoalState, String>(
-                    selector: (state) => state.title,
-                    builder: (context, title) {
+                  BlocSelector<EditGoalCubit, EditGoalState, String?>(
+                    selector: (state) => state.goal?.uid,
+                    builder: (context, uid) {
                       return CustomTextFormField(
+                        key: Key('$uid-title'),
                         label: 'Title',
-                        initialValue: title,
+                        initialValue: context.read<EditGoalCubit>().state.editingGoal.title,
                         validator: RequiredValidator(errorText: 'Title is required'),
-                        onChanged: (title) => context.read<CreateGoalCubit>().changeTitle(title),
+                        onChanged: (title) => context.read<EditGoalCubit>().changeTitle(title),
                       );
                     },
                   ),
                   const SizedBox(height: AppSpacing.L),
-                  BlocSelector<CreateGoalCubit, CreateGoalState, DateTime?>(
-                    selector: (state) => state.deadline,
-                    builder: (context, deadline) {
+                  BlocSelector<EditGoalCubit, EditGoalState, String?>(
+                    selector: (state) => state.goal?.uid,
+                    builder: (context, uid) {
                       return CustomDateFormField(
+                        key: Key('$uid-deadline'),
                         label: 'Deadline',
-                        initialValue: deadline,
+                        initialValue: context.read<EditGoalCubit>().state.editingGoal.deadline,
                         validator: RequiredValidator(errorText: 'Please set a deadline'),
-                        onChanged: (deadline) => context.read<CreateGoalCubit>().changeDeadline(deadline),
+                        onChanged: (deadline) => context.read<EditGoalCubit>().changeDeadline(deadline),
                       );
                     },
                   ),
                   const SizedBox(height: AppSpacing.L),
-                  BlocSelector<CreateGoalCubit, CreateGoalState, int?>(
-                    selector: (state) => state.requiredLearnings,
-                    builder: (context, requiredLearnings) {
+                  BlocSelector<EditGoalCubit, EditGoalState, String?>(
+                    selector: (state) => state.goal?.uid,
+                    builder: (context, uid) {
                       return CustomNumberFormField(
+                        key: Key('$uid-required-learnings'),
                         label: 'Required learnings',
-                        initialValue: requiredLearnings,
+                        initialValue: context.read<EditGoalCubit>().state.editingGoal.requiredLearnings,
                         validator: RequiredValidator(errorText: 'Please specify an amount'),
                         onChanged: (requiredLearnings) =>
-                            context.read<CreateGoalCubit>().changeRequiredLearnings(requiredLearnings.toInt()),
+                            context.read<EditGoalCubit>().changeRequiredLearnings(requiredLearnings.toInt()),
                       );
                     },
                   ),
                   const SizedBox(height: AppSpacing.L),
-                  BlocSelector<CreateGoalCubit, CreateGoalState, bool>(
+                  BlocSelector<EditGoalCubit, EditGoalState, bool>(
                     selector: (state) => state.isDifficultyRequirementEnabled,
                     builder: (context, isDifficultyRequirementEnabled) {
                       return Column(
@@ -91,24 +99,28 @@ class _CreateGoalView extends StatelessWidget {
                             value: isDifficultyRequirementEnabled,
                             title: const Text('Set a required difficulty'),
                             controlAffinity: ListTileControlAffinity.leading,
-                            onChanged: (_) => context.read<CreateGoalCubit>().toggleIsDifficultyRequirementEnabled(),
+                            onChanged: (_) => context.read<EditGoalCubit>().toggleIsDifficultyRequirementEnabled(),
                           ),
                           // CustomText.headline3('Required difficulty'),
-                          BlocSelector<CreateGoalCubit, CreateGoalState, double?>(
+                          BlocSelector<EditGoalCubit, EditGoalState, double?>(
                             selector: (state) => state.isDifficultyRequirementEnabled
-                                ? state.requiredDifficulty
+                                ? state.editingGoal.requiredDifficulty
                                 : state.previousRequiredDifficulty,
                             builder: (context, requiredDifficulty) {
+                              final double sliderValue = requiredDifficulty != GoalModel.noDifficultyRequirementValue
+                                  ? requiredDifficulty ?? 0
+                                  : 0;
+
                               return CustomSlider(
                                 // ignore: avoid_redundant_argument_values
                                 min: AppConfig.difficultyMinimum,
                                 max: AppConfig.difficultyMaximum,
                                 divisions: AppConfig.difficultyDivisions,
                                 // ignore: no-magic-number
-                                value: requiredDifficulty ?? 0,
+                                value: sliderValue,
                                 label: requiredDifficulty?.toStringAsFixed(AppConfig.difficultyFractionDigits),
                                 onChanged: isDifficultyRequirementEnabled
-                                    ? (value) => context.read<CreateGoalCubit>().changeRequiredDifficulty(value)
+                                    ? (value) => context.read<EditGoalCubit>().changeRequiredDifficulty(value)
                                     : null,
                               );
                             },
@@ -118,30 +130,20 @@ class _CreateGoalView extends StatelessWidget {
                     },
                   ),
                   const LabeledDivider(label: 'PREVIEW'),
-                  BlocBuilder<CreateGoalCubit, CreateGoalState>(
-                    builder: (context, state) {
-                      final now = DateTime.now();
-
-                      final temporaryGoal = GoalModel(
-                        uid: '',
-                        title: state.title.isEmpty ? 'Your fancy title' : state.title,
-                        created: now,
-                        deadline: state.deadline ?? now,
-                        learnings: 0,
-                        requiredLearnings: state.requiredLearnings ?? 0,
-                        requiredDifficulty: state.isDifficultyRequirementEnabled
-                            ? state.requiredDifficulty ?? GoalModel.noDifficultyRequirementValue
-                            : GoalModel.noDifficultyRequirementValue,
+                  BlocSelector<EditGoalCubit, EditGoalState, GoalModel>(
+                    selector: (state) => state.editingGoal,
+                    builder: (context, editingGoal) {
+                      return GoalListElement(
+                        key: Key(editingGoal.uid),
+                        goal: editingGoal,
                       );
-
-                      return GoalListElement(goal: temporaryGoal);
                     },
                   ),
                 ],
               ),
             ),
           ),
-          BlocSelector<CreateGoalCubit, CreateGoalState, bool>(
+          BlocSelector<EditGoalCubit, EditGoalState, bool>(
             selector: (state) => state.isLoading,
             builder: (context, isLoading) => isLoading
                 ? Positioned.fill(
@@ -165,7 +167,7 @@ class _CreateGoalView extends StatelessWidget {
     if (isValid) {
       FocusScope.of(context).unfocus();
 
-      context.read<CreateGoalCubit>().save();
+      context.read<EditGoalCubit>().save();
     }
   }
 }

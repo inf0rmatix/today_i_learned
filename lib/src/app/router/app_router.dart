@@ -1,10 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:today_i_learned/src/app/app.dart';
-import 'package:today_i_learned/src/categories/views/categories_page.dart';
-import 'package:today_i_learned/src/categories/views/category_page.dart';
+import 'package:today_i_learned/src/categories/categories.dart';
 import 'package:today_i_learned/src/dashboard/dashboard.dart';
-import 'package:today_i_learned/src/goals/views/create_goal_page.dart';
-import 'package:today_i_learned/src/goals/views/goals_page.dart';
+import 'package:today_i_learned/src/goals/goals.dart';
 import 'package:today_i_learned/src/learnings/learnings.dart';
 import 'package:today_i_learned/src/startup/startup.dart';
 
@@ -41,18 +39,20 @@ class AppRouter {
               builder: (_, routerState) => LearningDetailsPage(
                 uid: routerState.params['learningUid'].toString(),
               ),
+              routes: [
+                GoRoute(
+                  path: 'edit',
+                  name: AppRoutes.editLearning,
+                  builder: (_, routerState) => EditLearningPage(
+                    learningUid: routerState.params['learningUid'].toString(),
+                  ),
+                ),
+              ],
             ),
             GoRoute(
               path: 'create',
               name: AppRoutes.createLearning,
               builder: (_, __) => const EditLearningPage(),
-            ),
-            GoRoute(
-              path: 'edit/:learningUid',
-              name: AppRoutes.editLearning,
-              builder: (_, routerState) => EditLearningPage(
-                learningUid: routerState.params['learningUid'].toString(),
-              ),
             ),
           ],
         ),
@@ -64,7 +64,19 @@ class AppRouter {
             GoRoute(
               path: 'create',
               name: AppRoutes.createGoal,
-              builder: (_, __) => const CreateGoalPage(),
+              builder: (_, __) => const EditGoalPage(),
+            ),
+            GoRoute(
+              path: 'details/:goalUid',
+              name: AppRoutes.goalDetails,
+              builder: (_, routerState) => GoalDetailsPage(goalUid: routerState.params['goalUid']!),
+              routes: [
+                GoRoute(
+                  path: 'edit',
+                  name: AppRoutes.editGoal,
+                  builder: (_, routerState) => EditGoalPage(goalUid: routerState.params['goalUid']),
+                ),
+              ],
             ),
           ],
         ),

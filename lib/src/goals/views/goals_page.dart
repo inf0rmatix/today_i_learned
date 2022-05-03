@@ -42,7 +42,10 @@ class _GoalsView extends StatelessWidget {
           return ListView.separated(
             padding: const EdgeInsets.all(AppSpacing.M),
             itemCount: goals.length,
-            itemBuilder: (context, index) => GoalListElement(goal: goals[index]),
+            itemBuilder: (context, index) => GoalListElement(
+              goal: goals[index],
+              onTap: (goal) => context.goNamed(AppRoutes.goalDetails, params: {'goalUid': goal.uid}),
+            ),
             separatorBuilder: (_, index) {
               final goal = goals[index];
               final nextIndex = index + 1;
