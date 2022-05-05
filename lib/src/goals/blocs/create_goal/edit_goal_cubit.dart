@@ -109,6 +109,8 @@ class EditGoalCubit extends Cubit<EditGoalState> {
         isLoading: false,
         goal: goal,
         editingGoal: editingGoal,
+        // ignore: no-magic-number
+        isChangingRequirementsDisabled: editingGoal.learnings > 0,
         isDifficultyRequirementEnabled: editingGoal.requiredDifficulty != GoalModel.noDifficultyRequirementValue,
       ),
     );

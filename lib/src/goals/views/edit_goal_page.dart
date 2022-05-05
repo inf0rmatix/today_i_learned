@@ -66,12 +66,19 @@ class _EditGoalView extends StatelessWidget {
                   BlocSelector<EditGoalCubit, EditGoalState, String?>(
                     selector: (state) => state.goal?.uid,
                     builder: (context, uid) {
-                      return CustomDateFormField(
-                        key: Key('$uid-deadline'),
-                        label: 'Deadline',
-                        initialValue: context.read<EditGoalCubit>().state.editingGoal.deadline,
-                        validator: RequiredValidator(errorText: 'Please set a deadline'),
-                        onChanged: (deadline) => context.read<EditGoalCubit>().changeDeadline(deadline),
+                      return BlocSelector<EditGoalCubit, EditGoalState, bool>(
+                        selector: (state) => state.isChangingRequirementsDisabled,
+                        builder: (context, isChangingRequirementsDisabled) {
+                          return CustomDateFormField(
+                            key: Key('$uid-deadline'),
+                            label: 'Deadline',
+                            initialValue: context.read<EditGoalCubit>().state.editingGoal.deadline,
+                            validator: RequiredValidator(errorText: 'Please set a deadline'),
+                            onChanged: isChangingRequirementsDisabled
+                                ? null
+                                : (deadline) => context.read<EditGoalCubit>().changeDeadline(deadline),
+                          );
+                        },
                       );
                     },
                   ),
@@ -90,40 +97,38 @@ class _EditGoalView extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: AppSpacing.L),
-                  BlocSelector<EditGoalCubit, EditGoalState, bool>(
-                    selector: (state) => state.isDifficultyRequirementEnabled,
-                    builder: (context, isDifficultyRequirementEnabled) {
+                  BlocBuilder<EditGoalCubit, EditGoalState>(
+                    builder: (context, state) {
+                      final isDifficultyRequirementEnabled = state.isDifficultyRequirementEnabled;
+                      final isChangingRequirementsDisabled = state.isChangingRequirementsDisabled;
+
+                      final requiredDifficulty = state.isDifficultyRequirementEnabled
+                          ? state.editingGoal.requiredDifficulty
+                          : state.previousRequiredDifficulty;
+
+                      final double sliderValue =
+                          requiredDifficulty != GoalModel.noDifficultyRequirementValue ? requiredDifficulty : 0;
+
                       return Column(
                         children: [
                           CheckboxListTile(
                             value: isDifficultyRequirementEnabled,
                             title: const Text('Set a required difficulty'),
                             controlAffinity: ListTileControlAffinity.leading,
-                            onChanged: (_) => context.read<EditGoalCubit>().toggleIsDifficultyRequirementEnabled(),
+                            onChanged: isChangingRequirementsDisabled
+                                ? null
+                                : (_) => context.read<EditGoalCubit>().toggleIsDifficultyRequirementEnabled(),
                           ),
-                          // CustomText.headline3('Required difficulty'),
-                          BlocSelector<EditGoalCubit, EditGoalState, double?>(
-                            selector: (state) => state.isDifficultyRequirementEnabled
-                                ? state.editingGoal.requiredDifficulty
-                                : state.previousRequiredDifficulty,
-                            builder: (context, requiredDifficulty) {
-                              final double sliderValue = requiredDifficulty != GoalModel.noDifficultyRequirementValue
-                                  ? requiredDifficulty ?? 0
-                                  : 0;
-
-                              return CustomSlider(
-                                // ignore: avoid_redundant_argument_values
-                                min: AppConfig.difficultyMinimum,
-                                max: AppConfig.difficultyMaximum,
-                                divisions: AppConfig.difficultyDivisions,
-                                // ignore: no-magic-number
-                                value: sliderValue,
-                                label: requiredDifficulty?.toStringAsFixed(AppConfig.difficultyFractionDigits),
-                                onChanged: isDifficultyRequirementEnabled
-                                    ? (value) => context.read<EditGoalCubit>().changeRequiredDifficulty(value)
-                                    : null,
-                              );
-                            },
+                          CustomSlider(
+                            // ignore: avoid_redundant_argument_values
+                            min: AppConfig.difficultyMinimum,
+                            max: AppConfig.difficultyMaximum,
+                            divisions: AppConfig.difficultyDivisions,
+                            value: sliderValue,
+                            label: requiredDifficulty?.toStringAsFixed(AppConfig.difficultyFractionDigits),
+                            onChanged: (isChangingRequirementsDisabled || !isDifficultyRequirementEnabled)
+                                ? null
+                                : (value) => context.read<EditGoalCubit>().changeRequiredDifficulty(value),
                           ),
                         ],
                       );

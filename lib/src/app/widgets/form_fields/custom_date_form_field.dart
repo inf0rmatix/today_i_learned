@@ -28,15 +28,17 @@ class _CustomDateFormFieldState extends State<CustomDateFormField> {
   @override
   Widget build(BuildContext context) {
     final DateTime value = currentValue ?? widget.initialValue ?? DateTime.now();
+    final enabled = widget.onChanged != null;
 
     return GestureDetector(
-      onTap: () => _onTap(context),
+      onTap: enabled ? () => _onTap(context) : null,
       child: AbsorbPointer(
         child: CustomTextFormField(
           key: _formFieldKey,
           label: widget.label,
           initialValue: value.formatFullDate(context.locale),
           validator: widget.validator,
+          enabled: enabled,
         ),
       ),
     );
