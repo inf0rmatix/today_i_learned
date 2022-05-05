@@ -17,9 +17,10 @@ class GoalListElement extends StatelessWidget {
   Widget build(BuildContext context) {
     final learningProgress = goal.requiredLearnings > 0 ? goal.learnings / goal.requiredLearnings : 0.0;
 
-    return InkWell(
-      onTap: onTap == null ? null : () => onTap!(goal),
-      child: Card(
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
+        onTap: onTap == null ? null : () => onTap!(goal),
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.M),
           child: Column(

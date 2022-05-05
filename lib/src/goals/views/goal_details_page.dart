@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/goals/blocs/goal_details/goal_details_cubit.dart';
 import 'package:today_i_learned/src/goals/goals.dart';
-import 'package:today_i_learned/src/goals/models/models.dart';
-import 'package:today_i_learned/src/goals/repositories/repositories.dart';
 
 class GoalDetailsPage extends StatelessWidget {
   final String goalUid;
