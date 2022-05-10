@@ -125,7 +125,7 @@ class _EditGoalView extends StatelessWidget {
                             max: AppConfig.difficultyMaximum,
                             divisions: AppConfig.difficultyDivisions,
                             value: sliderValue,
-                            label: requiredDifficulty?.toStringAsFixed(AppConfig.difficultyFractionDigits),
+                            label: requiredDifficulty.toStringAsFixed(AppConfig.difficultyFractionDigits),
                             onChanged: (isChangingRequirementsDisabled || !isDifficultyRequirementEnabled)
                                 ? null
                                 : (value) => context.read<EditGoalCubit>().changeRequiredDifficulty(value),
