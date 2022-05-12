@@ -24,8 +24,15 @@ class TodayILearnedApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => CategoriesCubit(categoryRepository: categoryRepository)),
-        BlocProvider(create: (_) => GoalsCubit(goalRepository: goalRepository)),
+        BlocProvider(
+          create: (_) => CategoriesCubit(categoryRepository: categoryRepository),
+        ),
+        BlocProvider(
+          create: (_) => GoalsCubit(
+            goalRepository: goalRepository,
+            categoryRepository: categoryRepository,
+          ),
+        ),
       ],
       child: MultiRepositoryProvider(
         providers: [

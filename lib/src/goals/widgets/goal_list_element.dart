@@ -1,15 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:today_i_learned/src/app/app.dart';
+import 'package:today_i_learned/src/categories/models/category/category_model.dart';
 import 'package:today_i_learned/src/goals/models/models.dart';
 
 class GoalListElement extends StatelessWidget {
   final GoalModel goal;
+  final CategoryModel? category;
   final Function(GoalModel goal)? onTap;
 
   const GoalListElement({
     Key? key,
     required this.goal,
+    this.category,
     this.onTap,
   }) : super(key: key);
 
@@ -51,6 +54,11 @@ class GoalListElement extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.construction_rounded),
                   title: Text('${goal.requiredDifficulty} minimum difficulty'),
+                ),
+              if (category != null)
+                ListTile(
+                  leading: const Icon(Icons.category_rounded),
+                  title: Text(category!.name),
                 ),
               if (!goal.isAchieved)
                 Row(

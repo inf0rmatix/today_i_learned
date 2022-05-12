@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:today_i_learned/src/categories/models/category/category_model.dart';
+import 'package:today_i_learned/src/categories/repositories/category/category_repository.dart';
 import 'package:today_i_learned/src/goals/models/models.dart';
 import 'package:today_i_learned/src/goals/repositories/repositories.dart';
 
@@ -8,11 +10,13 @@ part 'edit_goal_state.dart';
 
 class EditGoalCubit extends Cubit<EditGoalState> {
   final GoalRepository goalRepository;
+  final CategoryRepository categoryRepository;
 
   // TODO(inf0rmatix): add autosave for valid states. DEFINITELY :) Streamchat approved
   EditGoalCubit({
     String? goalUid,
     required this.goalRepository,
+    required this.categoryRepository,
   }) : super(
           EditGoalState(
             editingGoal: GoalModel(
@@ -38,6 +42,15 @@ class EditGoalCubit extends Cubit<EditGoalState> {
     emit(
       state.copyWith(
         editingGoal: state.editingGoal.copyWith(deadline: deadline),
+      ),
+    );
+  }
+
+  void changeCategory(CategoryModel? category) {
+    emit(
+      state.copyWith(
+        editingGoal: state.editingGoal.copyWith(category: category?.uid),
+        category: category,
       ),
     );
   }
@@ -104,10 +117,18 @@ class EditGoalCubit extends Cubit<EditGoalState> {
     final goal = await goalRepository.findOne(goalUid);
     final editingGoal = goal ?? state.editingGoal;
 
+    final categories = await categoryRepository.findAll();
+
+    final category = editingGoal.category == null
+        ? null
+        : categories.firstWhereOrNull((category) => category.uid == editingGoal.category);
+
     emit(
       state.copyWith(
         isLoading: false,
         goal: goal,
+        category: category,
+        categories: categories,
         editingGoal: editingGoal,
         // ignore: no-magic-number
         isChangingRequirementsDisabled: editingGoal.learnings > 0,

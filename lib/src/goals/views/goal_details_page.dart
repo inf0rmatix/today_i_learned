@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:today_i_learned/src/app/app.dart';
-import 'package:today_i_learned/src/goals/blocs/goal_details/goal_details_cubit.dart';
+import 'package:today_i_learned/src/categories/categories.dart';
 import 'package:today_i_learned/src/goals/goals.dart';
 
 class GoalDetailsPage extends StatelessWidget {
@@ -19,6 +19,7 @@ class GoalDetailsPage extends StatelessWidget {
       create: (context) => GoalDetailsCubit(
         goalUid: goalUid,
         goalRepository: context.read<GoalRepository>(),
+        categoryRepository: context.read<CategoryRepository>(),
       ),
       child: const _GoalDetailsPageView(),
     );
@@ -51,13 +52,20 @@ class _GoalDetailsPageView extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          BlocSelector<GoalDetailsCubit, GoalDetailsState, GoalModel?>(
-            selector: (state) => state.goal,
-            builder: (context, goal) => goal == null
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : GoalListElement(goal: goal),
+          BlocBuilder<GoalDetailsCubit, GoalDetailsState>(
+            // buildWhen:(oldState, newState) => oldState.goal != newState.goal || oldState.ca
+            builder: (context, state) {
+              final goal = state.goal;
+
+              return goal == null
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : GoalListElement(
+                      goal: goal,
+                      category: state.category,
+                    );
+            },
           ),
         ],
       ),

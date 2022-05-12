@@ -31,6 +31,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
+      // TODO(informatix): add test for category display
       await tester.tap(find.byType(GoalListElement));
 
       await tester.pumpAndSettle();

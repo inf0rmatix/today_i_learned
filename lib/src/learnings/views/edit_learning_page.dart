@@ -76,6 +76,7 @@ class _CreateLearningPageView extends StatelessWidget {
                         key: Key('${state.learning?.description?.length.toString() ?? ''}-description'),
                         label: 'Description',
                         initialValue: state.description,
+                        validator: RequiredValidator(errorText: 'A description is required'),
                         onChanged: (description) => context.read<EditLearningCubit>().changeDescription(description),
                       );
                     },

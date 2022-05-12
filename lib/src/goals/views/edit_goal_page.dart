@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:today_i_learned/src/app/app.dart';
+import 'package:today_i_learned/src/categories/models/category/category_model.dart';
+import 'package:today_i_learned/src/categories/repositories/category/category_repository.dart';
 import 'package:today_i_learned/src/goals/goals.dart';
 
 class EditGoalPage extends StatelessWidget {
@@ -18,6 +20,7 @@ class EditGoalPage extends StatelessWidget {
       create: (context) => EditGoalCubit(
         goalUid: goalUid,
         goalRepository: context.read<GoalRepository>(),
+        categoryRepository: context.read<CategoryRepository>(),
       ),
       child: _EditGoalView(),
     );
@@ -134,13 +137,39 @@ class _EditGoalView extends StatelessWidget {
                       );
                     },
                   ),
+                  const SizedBox(height: AppSpacing.L),
+                  BlocBuilder<EditGoalCubit, EditGoalState>(
+                    buildWhen: (previous, current) =>
+                        previous.categories != current.categories || previous.category != current.category,
+                    builder: (context, state) => CustomDropdownButtonFormField<CategoryModel>(
+                      label: 'Category (optional)',
+                      value: state.category,
+                      items: List.generate(
+                        state.categories.length,
+                        // ignore: prefer-extracting-callbacks
+                        (index) {
+                          final category = state.categories[index];
+
+                          return DropdownMenuItem(
+                            value: category,
+                            child: Text(category.name),
+                          );
+                        },
+                      ),
+                      onChanged: state.isChangingRequirementsDisabled
+                          ? null
+                          : (category) => context.read<EditGoalCubit>().changeCategory(category),
+                    ),
+                  ),
                   const LabeledDivider(label: 'PREVIEW'),
-                  BlocSelector<EditGoalCubit, EditGoalState, GoalModel>(
-                    selector: (state) => state.editingGoal,
-                    builder: (context, editingGoal) {
+                  BlocBuilder<EditGoalCubit, EditGoalState>(
+                    buildWhen: (oldState, newState) =>
+                        oldState.editingGoal != newState.editingGoal || oldState.category != newState.category,
+                    builder: (context, state) {
                       return GoalListElement(
-                        key: Key(editingGoal.uid),
-                        goal: editingGoal,
+                        key: Key(state.editingGoal.uid),
+                        goal: state.editingGoal,
+                        category: state.category,
                       );
                     },
                   ),

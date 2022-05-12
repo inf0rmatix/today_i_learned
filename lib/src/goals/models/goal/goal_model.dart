@@ -20,6 +20,7 @@ class GoalModel with _$GoalModel {
     // ignore: no-magic-number
     @Default(1) int requiredLearnings,
     @Default(GoalModel.noDifficultyRequirementValue) double requiredDifficulty,
+    String? category,
   }) = _GoalModel;
   GoalModel._();
 

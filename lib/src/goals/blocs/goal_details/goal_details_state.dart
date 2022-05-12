@@ -5,6 +5,7 @@ class GoalDetailsState with _$GoalDetailsState {
   const factory GoalDetailsState({
     required String goalUid,
     GoalModel? goal,
+    CategoryModel? category,
     @Default(false) bool isLoading,
   }) = _GoalDetailsState;
 }
