@@ -15,7 +15,7 @@ class StartupPage extends StatelessWidget {
         future: Future.delayed(const Duration(seconds: 1)),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            WidgetsBinding.instance?.addPostFrameCallback((_) => context.goNamed(AppRoutes.dashboard));
+            WidgetsBinding.instance.addPostFrameCallback((_) => context.goNamed(AppRoutes.dashboard));
           }
 
           return const Center(

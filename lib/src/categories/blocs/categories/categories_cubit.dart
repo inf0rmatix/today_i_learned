@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:today_i_learned/src/app/repositories/crud_repository.dart';
+import 'package:today_i_learned/src/app/app.dart';
 import 'package:today_i_learned/src/categories/models/models.dart';
 import 'package:today_i_learned/src/categories/repositories/repositories.dart';
 

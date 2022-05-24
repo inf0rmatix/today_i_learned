@@ -8,7 +8,7 @@
 PRODUCT_NAME = today_i_learned
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.todayILearned
+PRODUCT_BUNDLE_IDENTIFIER = com.informatix.todayILearned
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 com.informatix. All rights reserved.

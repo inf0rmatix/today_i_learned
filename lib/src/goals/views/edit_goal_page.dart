@@ -38,6 +38,7 @@ class _EditGoalView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Create a goal'),
       ),
+      // TODO(inf0rmatix): only show if there are any changes
       floatingActionButton: FloatingActionButton(
         onPressed: () => _save(context),
         child: const Icon(Icons.save_rounded),
